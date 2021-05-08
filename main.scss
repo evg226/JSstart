@@ -2,152 +2,176 @@
 
 .container{
     min-width: 320px;
-    max-width: 768px;
+    max-width: 1040px;
     margin: 0 auto;
+    padding: 0 10px;
 }
 
-body{
+html {
     font-size: 16px;
 }
+body{
+    // font-size: 16px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 .header{
-    font-size: 2rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    text-align: center;
-    margin: 2rem 0;
+    background: #dbdbdb;
+    &__top{
+        display: flex;
+        justify-content: space-between;
+        min-height: 90px;
+        align-items: center;
+        border-bottom: 1px solid #cfcccc;
+    }
+    &__logo{
+        font-size: 2rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color:#3a3a3a;
+        line-height: 3rem;
+    }
+    &__hamburger{
+        // border: 1px solid #3a3a3a;
+        
+        &-line{
+            width: 40px;
+            border: 2px solid #3a3a3a;
+            // background: #3a3a3a;
+            margin: 10px;
+        }
+    }
+    &__menu{
+        
+        &>ul{
+            display: flex;
+             justify-content: space-between;
+             &>li{
+                 flex:1;
+             }
+        }
+        &-link{
+            display: inline-block;
+            color:#575757;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 20px 0;
+            text-align: center;
+            width: 100%;
+
+            &_active{
+                color:#3a3a3a;
+                background: white;
+                border-top-left-radius : 10px;
+                border-top-right-radius : 10px;
+            }
+            &:hover{
+                color:#ffffff;
+                background: #8f8f8f;
+                border-top-left-radius : 10px;
+                border-top-right-radius : 10px;
+            }
+        }
+
+    }
 }
 
 .homework{
-    &-header{
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin: 1.5rem 0;
-    }
-    &-subheader{
-        font-size: 1.2rem;
-        font-weight: 600;
-         margin: 1rem 0;
-    }
-}
-
-label{
-    // width:300px;
-    margin: 10px 0;
-}
-input {
-    font-size: inherit;
-    border: 1px solid #cfcccc;
-    text-align: center;
-    height: 30px;
-    padding:5px;
-    width:150px;
-
-}
-.button{
-    font-size: inherit;
-    height: 30px;
-    color:inherit;
-    border: 1px solid #cfcccc;
-    background: #cfcccc;
-    text-decoration: none;
-    text-align: center;
-    padding: 5px;
-      
-        &:hover{
-            background: whitesmoke;
-        }
-}
-
-.output{
-    height: 30px;
-    padding: 5px;
-    border: 1px solid #cfcccc;
-    text-align: center;
-    width:150px;
-    margin-left: 7px;
-    
-    &-gr{
+    &__box{
         display: flex;
-        align-items: center;
-        width: 100%;
+        flex-wrap: wrap;
     }
-}
-
-.homework {
-   &__group{
-       display: flex;
-       align-items: center;
+   &__heading{
+       text-transform: uppercase;
+       color: #494949;
+       font-size: 1.8rem;
+       font-weight: 600;
+       margin: 20px 0;
+       text-align: center;
    }
-    &__in{
-        display: flex;
-        flex-direction: column;
-        margin-right: 20px;
-        
-    }
-}
-
-.homework12{
-    &__group{
-    display: flex;
-    align-items: center;
-}
-    &__in{
-        display: flex;
-        flex-direction: column;
+   &__sub{
+       display: flex;
+       flex-direction: column;
+       box-shadow: 0 0 10px #cfcccc;
+    //    width: 30%;
+       flex: 1 0 31%;
+       min-height: 250px;
+       justify-content: space-evenly;
+       padding: 15px;
+       margin: 5px;
+       &:hover{
+        box-shadow: 0 0 20px #363535;
+       }
        
-    }
-    & label{
-        margin: 5px 20px 5px 0;
-    }
-    & input{
-        width: 150px;
-        margin-left: 10px;
-    }
-    &__button{
-        padding: 5px 10px;
-    }
-}
-
-.homework13 {
-    &__output{
-        margin: 10px 0;
-        display: flex;
-        align-items: center;
-        &-value{
-            margin-left: 5px;
-            margin-right: 20px;
-            // width: 200px;
-            flex:1;
+       &-heading{
+        color: #494949;
+        font-size: 1.1rem;
+        font-weight: 600;
+        line-height: 1.4rem;
+        // margin-bottom:15px;
+        text-align: center;
+        border-bottom: 1px solid #dbdbdb;
+        padding-bottom: 10px;
         }
-    }
-}
-.homework14{
-    &__in{
-        display: flex;
-        align-items: center;
-        margin: 10px 0;
-        // margin-bottom: 30px;
-
-
-    }
-    &__button {
-        margin: 0 20px;
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-    &__output-value{
-        width: 120px;
-    }
-
-
-}
-.homework15 {
-    padding-bottom: 30px;
-    & p {
-        margin: 10px 0;
-        &::first-letter {
-            color: red;
-            font-size: 1.5rem;
+        &-label{
+            height: 30px;
+            color:#494949;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
+        &-inout{
+            color: inherit;
+            height: 100%;
+            text-align: center;
+            border: 1px solid #dbdbdb;
+            width:50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            // flex:1 1 50%;
+        }
+        &-button{
+            border: 1px solid #8f8f8f;
+            padding: 8px 0;
+            margin: 0 auto;
+            min-width: 50%;
+            text-align: center;
+            background: #dbdbdb;
+            color: #575757;
+            font-size: 1rem;
+            // display: inline-block;
+            
+            &:hover{
+                color:#ffffff;
+                background: #494949;
+            }
+        }
+        &-text{
+            font-size: 1rem;
+            color:#494949;
+            margin: 5px 0;
+            line-height: 1.2rem;
+        } 
+        
+   }
+}
+
+#i1_5{
+    flex:1 0 64.5%;
+    // background:aqua;
+}
+
+@media screen and (max-width:900px){
+    html{
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width:765px){
+    html{
+        font-size: 12px;
     }
 }

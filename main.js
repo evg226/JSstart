@@ -42,6 +42,11 @@ function varCopy() {
     adminEl.innerHTML = admin;
 }
 
+function adminClear() {
+    var farengateDiv = document.getElementById("adminId");
+    farengateDiv.innerHTML = '';
+}
+
 // п.4
 // Проверка моего ответа
 function checkFunc() {

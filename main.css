@@ -79,181 +79,214 @@ h6 {
 
 .container {
   min-width: 320px;
-  max-width: 768px;
+  max-width: 1040px;
   margin: 0 auto;
+  padding: 0 10px;
 }
 
-body {
+html {
   font-size: 16px;
 }
 
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 .header {
+  background: #dbdbdb;
+}
+
+.header__top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  min-height: 90px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom: 1px solid #cfcccc;
+}
+
+.header__logo {
   font-size: 2rem;
   font-weight: 700;
   text-transform: uppercase;
-  text-align: center;
-  margin: 2rem 0;
+  color: #3a3a3a;
+  line-height: 3rem;
 }
 
-.homework-header {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin: 1.5rem 0;
+.header__hamburger-line {
+  width: 40px;
+  border: 2px solid #3a3a3a;
+  margin: 10px;
 }
 
-.homework-subheader {
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin: 1rem 0;
-}
-
-label {
-  margin: 10px 0;
-}
-
-input {
-  font-size: inherit;
-  border: 1px solid #cfcccc;
-  text-align: center;
-  height: 30px;
-  padding: 5px;
-  width: 150px;
-}
-
-.button {
-  font-size: inherit;
-  height: 30px;
-  color: inherit;
-  border: 1px solid #cfcccc;
-  background: #cfcccc;
-  text-decoration: none;
-  text-align: center;
-  padding: 5px;
-}
-
-.button:hover {
-  background: whitesmoke;
-}
-
-.output {
-  height: 30px;
-  padding: 5px;
-  border: 1px solid #cfcccc;
-  text-align: center;
-  width: 150px;
-  margin-left: 7px;
-}
-
-.output-gr {
+.header__menu > ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
-.homework__group {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.homework__in {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  margin-right: 20px;
-}
-
-.homework12__group {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.homework12__in {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
-.homework12 label {
-  margin: 5px 20px 5px 0;
-}
-
-.homework12 input {
-  width: 150px;
-  margin-left: 10px;
-}
-
-.homework12__button {
-  padding: 5px 10px;
-}
-
-.homework13__output {
-  margin: 10px 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.homework13__output-value {
-  margin-left: 5px;
-  margin-right: 20px;
+.header__menu > ul > li {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
 }
 
-.homework14__in {
+.header__menu-link {
+  display: inline-block;
+  color: #575757;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 20px 0;
+  text-align: center;
+  width: 100%;
+}
+
+.header__menu-link_active {
+  color: #3a3a3a;
+  background: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.header__menu-link:hover {
+  color: #ffffff;
+  background: #8f8f8f;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.homework__box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.homework__heading {
+  text-transform: uppercase;
+  color: #494949;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.homework__sub {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-shadow: 0 0 10px #cfcccc;
+          box-shadow: 0 0 10px #cfcccc;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 31%;
+          flex: 1 0 31%;
+  min-height: 250px;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  padding: 15px;
+  margin: 5px;
+}
+
+.homework__sub:hover {
+  -webkit-box-shadow: 0 0 20px #363535;
+          box-shadow: 0 0 20px #363535;
+}
+
+.homework__sub-heading {
+  color: #494949;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.4rem;
+  text-align: center;
+  border-bottom: 1px solid #dbdbdb;
+  padding-bottom: 10px;
+}
+
+.homework__sub-label {
+  height: 30px;
+  color: #494949;
+  font-size: 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin: 10px 0;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
-.homework14__button {
-  margin: 0 20px;
-  padding-left: 10px;
-  padding-right: 10px;
+.homework__sub-inout {
+  color: inherit;
+  height: 100%;
+  text-align: center;
+  border: 1px solid #dbdbdb;
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
-.homework14__output-value {
-  width: 120px;
+.homework__sub-button {
+  border: 1px solid #8f8f8f;
+  padding: 8px 0;
+  margin: 0 auto;
+  min-width: 50%;
+  text-align: center;
+  background: #dbdbdb;
+  color: #575757;
+  font-size: 1rem;
 }
 
-.homework15 {
-  padding-bottom: 30px;
+.homework__sub-button:hover {
+  color: #ffffff;
+  background: #494949;
 }
 
-.homework15 p {
-  margin: 10px 0;
+.homework__sub-text {
+  font-size: 1rem;
+  color: #494949;
+  margin: 5px 0;
+  line-height: 1.2rem;
 }
 
-.homework15 p::first-letter {
-  color: red;
-  font-size: 1.5rem;
+#i1_5 {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 64.5%;
+          flex: 1 0 64.5%;
+}
+
+@media screen and (max-width: 900px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 765px) {
+  html {
+    font-size: 12px;
+  }
 }
 /*# sourceMappingURL=main.css.map */
