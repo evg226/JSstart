@@ -58,3 +58,14 @@ function checkFunc() {
 
 // п.5
 // async и defer тега script изучены. Краткое описание в index.html
+
+
+
+
+// Работа меню для мобильной версии
+var buttonHamb = document.getElementById("hamburger");
+buttonHamb.onclick = function () {
+    var menu = document.getElementById("mainMenu");
+    menu.classList.toggle("mainMenuOpen");
+    buttonHamb.classList.toggle("open");
+}

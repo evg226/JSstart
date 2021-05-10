@@ -13,13 +13,14 @@ html {
 body{
     // font-size: 16px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    
 }
 
 .header{
     background: #dbdbdb;
     &__top{
         display: flex;
-        justify-content: space-between;
+        
         min-height: 90px;
         align-items: center;
         border-bottom: 1px solid #cfcccc;
@@ -30,10 +31,12 @@ body{
         text-transform: uppercase;
         color:#3a3a3a;
         line-height: 3rem;
+     
     }
     &__hamburger{
         // border: 1px solid #3a3a3a;
-        
+        display: none;
+        cursor: pointer;
         &-line{
             width: 40px;
             border: 2px solid #3a3a3a;
@@ -46,6 +49,7 @@ body{
         &>ul{
             display: flex;
              justify-content: space-between;
+             margin-top: 15px;
              &>li{
                  flex:1;
              }
@@ -77,7 +81,24 @@ body{
     }
 }
 
+.breadcrumb{
+    // background:  #dbdbdb;
+    &__container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1.2rem;
+        color:#494949;
+        line-height: 1.4rem;
+        margin: 1rem 0 3rem;
+    }
+    &__link{
+        color:inherit;
+    }
+}
+
 .homework{
+    min-height: 250px;
     &__box{
         display: flex;
         flex-wrap: wrap;
@@ -164,6 +185,17 @@ body{
     // background:aqua;
 }
 
+.footer{
+    background: #3a3a3a;
+    &__container{
+        color:#dbdbdb;
+        margin-top: 40px;
+        padding: 15px 10px;
+        text-align: center;
+        line-height: 1.5rem;
+    }
+}
+
 @media screen and (max-width:900px){
     html{
         font-size: 14px;
@@ -171,7 +203,92 @@ body{
 }
 
 @media screen and (max-width:765px){
-    html{
-        font-size: 12px;
+    .header{
+        &__top{
+            justify-content: center;
+        }
     }
+    .homework{
+        &__sub{
+            flex: 1 0 48%;
+        }
+    }
+}
+
+@media screen and (max-width:540px){
+    // html{
+    //     font-size: 12px;
+    // }
+    .header{
+        &__top{
+            justify-content: space-between;
+        }
+        &__logo{
+            font-size: 1.5rem;
+            line-height: 1.8rem;
+        }
+
+        #hamburger{
+            display: inline-block;
+            position: relative;
+            
+            &.open{
+                // background: #ffffff;
+                
+                & .header__hamburger-line-2{
+                    border-color: #dbdbdb;
+                }
+                & .header__hamburger-line-1{
+                    
+                    transform:rotate(45grad) translate(9px,11px);
+                }
+                & .header__hamburger-line-3{
+                    transform:rotate(-45grad) translate(9px,-11px);
+                }
+
+            }
+            
+        }
+    
+        &__menu {
+            
+            display: none;
+           
+            &-link{
+                padding: 10px 20px;
+                &:hover{
+                   border-radius: 0px; 
+                }
+            }
+            &>ul {
+            // display: none;
+            position:absolute;
+            flex-direction: column;
+            z-index: 10;
+            right: 10px;
+            top:90px;
+            background: white;
+            margin:0;
+            border:1px solid  #cfcccc;
+            border-top: none;
+            }
+            &.mainMenuOpen{
+                display: block;
+            }
+        }
+    
+
+    }
+    
+    // .mainMenuOpen{
+    //     display: block;
+    // }
+    
+    .homework{
+        &__sub{
+            flex: 1 0 90%;
+        }
+    }
+   
+
 }

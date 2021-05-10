@@ -13,23 +13,23 @@
     <header class="header">
         <div class="header__container container">
             <div class="header__top">
-                <div class="header__logo">Java&nbsp;script. Базовый&nbsp;курс</div>
+                <a href="index.html" class="header__logo">Java&nbsp;script. Базовый&nbsp;курс</a>
                 <div class="header__hamburger" id="hamburger">
-                    <div class="header__hamburger-line"></div>
-                    <div class="header__hamburger-line"></div>
-                    <div class="header__hamburger-line"></div>
+                    <div class="header__hamburger-line header__hamburger-line-1"></div>
+                    <div class="header__hamburger-line header__hamburger-line-2"></div>
+                    <div class="header__hamburger-line header__hamburger-line-3"></div>
                 </div>
             </div>
-            <nav class="header__menu">
+            <nav class="header__menu" id="mainMenu">
                 <ul>
-                    <li><a href="#" class="header__menu-link header__menu-link_active">hw1</a></li>
-                    <li><a href="#" class="header__menu-link">hw2</a></li>
-                    <li><a href="#" class="header__menu-link">hw3</a></li>
-                    <li><a href="#" class="header__menu-link">hw4</a></li>
-                    <li><a href="#" class="header__menu-link">hw5</a></li>
-                    <li><a href="#" class="header__menu-link">hw6</a></li>
-                    <li><a href="#" class="header__menu-link">hw7</a></li>
-                    <li><a href="#" class="header__menu-link">hw8</a></li>
+                    <li><a href="hw1.html" class="header__menu-link">hw1</a></li>
+                    <li><a href="hw2.html" class="header__menu-link header__menu-link-">hw2</a></li>
+                    <li><a href="hw3.html" class="header__menu-link">hw3</a></li>
+                    <li><a href="hw4.html" class="header__menu-link">hw4</a></li>
+                    <li><a href="hw5.html" class="header__menu-link">hw5</a></li>
+                    <li><a href="hw6.html" class="header__menu-link">hw6</a></li>
+                    <li><a href="hw7.html" class="header__menu-link">hw7</a></li>
+                    <li><a href="hw8.html" class="header__menu-link">hw8</a></li>
                 </ul>
             </nav>
         </div>
@@ -37,85 +37,27 @@
     </header>
 
     <main>
+        <nav class="breadcrumb">
+            <div class="breadcrumb__container container">
+                <span class="breadcrumb__left">JS-код находится в файле <b>main.js</b></span>
+                <span class="breadcrumb__right"><a href="" class="breadcrumb__link">Главная</a>&nbsp;</span>
+            </div>
+        </nav>
+
+
         <section class="homework">
+
+
             <div class="homework__container container">
                 <h1 class="homework__heading">
-                    Домашняя работа №1
+                    Главная страница
                 </h1>
+
                 <div class="homework__box">
-                    <div id="1_1" class="homework__sub">
-                        <h2 class="homework__sub-heading">
-                            1. Перевод температуры из&nbsp;C&nbsp;в&nbsp;F
-                        </h2>
-                        <label class="homework__sub-label" for="celsium">Температура,С
-                            <input class="homework__sub-inout" onchange="tempClear();" type="number" name="celsium"
-                                id="celsiumId" value="100">
-                        </label>
-                        <a href="#1" class="homework__sub-button" onclick="tempFunc();">Перевести</a>
-                        <div class="homework__sub-label"> Температура,F
-                            <div class="homework__sub-inout" id="farengateId"></div>
-                        </div>
-                    </div>
-
-                    <div id="1_2" class="homework__sub">
-                        <h2 class="homework__sub-heading">
-                            2. Обмен значений между переменными
-                        </h2>
-                        <label class="homework__sub-label" for="var1">Переменная 1
-                            <input class="homework__sub-inout" type="number" name="var1" id="var1" value="1"></label>
-                        <label class="homework__sub-label" for="var2">Переменная 2
-                            <input class="homework__sub-inout" type="number" name="var1" id="var2" value="222"></label>
-                        <a href="#1_2" class="homework__sub-button" onclick="varChange();">Обменять</a>
-                    </div>
-
-                    <div id="1_3" class="homework__sub">
-                        <h2 class="homework__sub-heading">
-                            3. Копирование значений переменных
-                        </h2>
-                        <label class="homework__sub-label" for="name">Name
-                            <input class="homework__sub-inout" type="text" onclick="adminClear();" name="name"
-                                id="nameId" value="Василий">
-                        </label>
-                        <a href="#1_3" class="homework__sub-button" onclick="varCopy();">Скопировать</a>
-                        <div class="homework__sub-label">Admin
-                            <div class="homework__sub-inout" id="adminId"></div>
-                        </div>
-                    </div>
-
-                    <div id="1_4" class="homework__sub">
-                        <h2 class="homework__sub-heading">
-                            4. Вычисление значения выражения 1000+"108"
-                        </h2>
-                        <div class="homework__sub-label">Мой ответ
-                            <div class="homework__sub-inout">1000108</div>
-                        </div>
-                        <a href="#1_4" class="homework__sub-button" onclick="checkFunc();">Проверить &gt;</a>
-                        <div class="homework__sub-label">Ответ JS
-                            <div class="homework__sub-inout" id="checkId"></div>
-                        </div>
-                    </div>
-
-                    <div id="i1_5" class="homework__sub ">
-                        <h2 class="homework__sub-heading">
-                            5. Атрибуты <b>defer</b> и <b>async</b> тега
-                            <b>script</b>
-                        </h2>
-                        <p class="homework__sub-text">По умолчанию загрузка скрипта выполняется в соответствии с
-                            расположением в HTML-файле</p>
-                        <p class="homework__sub-text">С defer скрипт грузится параллельно (в фоне) c другими HTML
-                            элементами, но выполняеnся до
-                            события
-                            DOMContentLoaded. Если есть несколько скриптов c defer, то они грузятся последовательно
-                        </p>
-
-                        <p class="homework__sub-text">C async скрипт грузится также в фоновом режиме, но
-                            DOMContentLoaded не ждет выполнения
-                            скрипта.
-                            Если есть несколько async-скриптов, то они выполняются параллельно.
-                        </p>
-                    </div>
+                    Главная страница на разработке.
 
                 </div>
+                Сейчас будет перенаправление на текущий урок
             </div>
 
             </div>
@@ -123,50 +65,21 @@
 
     </main>
 
-    <div class="container">
+    <footer class="footer">
+        <div class="footer__container container">
+            &copy; Evgeny Ivanov 2021 Домашние задания Java Script - Базовый курс
+        </div>
+    </footer>
 
+    <script src="main.js">
 
-
-        <div id="rrrr" class="homework12">
-
-
-
-            <div id="3" class="homework13 homework12">
-
-                <h3 class="homework-subheader"></h3>
-                <div class="homework12__group">
-                    <div class="homework12__in">
-
-                    </div>
-                </div>
-
-                <div id="4" class="homework14">
-
-                    <h3 class="homework-subheader"></h3>
-                    <!-- <div class="homework12__group"> -->
-                    <div class="homework14__in">
-
-
-
-                    </div>
-
-                    <!-- </div> -->
-                </div>
-
-                <div id="5" class="homework15">
-
-                    <h3 class="homework15__subheader homework-subheader">
-                    </h3>
-                    <!-- <div class="homework12__group"> -->
-                    <div class="homework15__in">
-
-
-                    </div>
-
-                    <!-- </div> -->
-                </div>
-            </div>
-            <script src="main.js"></script>
+    </script>
+    <script>
+        activeHW = "hw2.html";
+        setTimeout(function () {
+            window.location.href = activeHW;
+        }, 2 * 1000);
+    </script>
 </body>
 
 </html>
