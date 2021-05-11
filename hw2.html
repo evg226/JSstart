@@ -55,31 +55,80 @@
                 </h1>
 
                 <div class="homework__box">
-                    <div id="2_1" class="homework__sub">
+                    <div id="i2_1" class="homework__sub">
                         <h2 class="homework__sub-heading">
-                            1. Перевод температуры из&nbsp;C&nbsp;в&nbsp;F
+                            1. Результаты выполнения операторов
                         </h2>
-                        <label class="homework__sub-label" for="celsium">Температура,С
-                            <input class="homework__sub-inout" onchange="tempClear();" type="number" name="celsium"
-                                id="celsiumId" value="100">
-                        </label>
-                        <a href="#2_1" class="homework__sub-button" onclick="tempFunc();">Перевести</a>
-                        <div class="homework__sub-label"> Температура,F
-                            <div class="homework__sub-inout" id="farengateId"></div>
+                        <div class="homework__sub-table">
+                            <p>Шаг 0</p>
+                            <p>
+                            var a = 1, b = 1, c, d;</p>
+                            <p></p>
+                            <p>Шаг 1</p>
+                            <p>
+                            c = ++a; alert("c=" + c);
+                            </p>
+                            <p>
+                                // 2. Сначала выполняется префиксный инкрменент ++a, a = 2, потом - присваивание с = 2.
+                            </p>
+                            <p>Шаг 2</p>
+                            <p>
+                            d = b++; alert("d=" + d);
+                            </p>
+                            <p>
+                                // 1. Инкремент - в постфиксе, поэтому сначала выполняется присвоение d = 1, а потом - инкремент b++, b = 2.
+                            </p>
+                            <p>Шаг 3</p>
+                            <p>
+                            c = (2+ ++a); alert("c=" + c);
+                            </p>
+                            <p>
+                                // 5. Сначала выполняется префиксный инкемент ++a, a = 3, как более приоритетный, чем сложение, затем сложение (2+3), затем присвоение c = 5.
+                            </p>
+                            <p>Шаг 4</p>
+                            <p>
+                            d = (2 + b++); alert("d=" + d); 
+                            </p>
+                            <p>
+                                // 4. Сначала выполняется сложение (2 + b), (4), потом постфиксный инкремент b++, b = 3. d = 4.
+                            </p>
+                            <p>Шаг 5</p>
+                            <p>
+                            alert("a=" + a);
+                            </p>
+                            <p>
+                                // 3. Выводится a, который на третьем шаге стал a = 3.
+                            </p>
+                            <p>Шаг 6</p>
+                            <p>
+                            alert("b=" + b);
+                            </p>
+                            <p>
+                                // 3. Выводится a, который на четвертом шаге стал b = 3.
+                            </p>
+                        </div>
+
+                        <a href="#i2_1" class="homework__sub-button" id="b2_1" onclick="operatorsTest();">Проверить</a>
+                        <div class="homework__sub-label"> Ответ JS
+                            <div class="homework__sub-inout" id="operatorsId"></div>
                         </div>
                     </div>
-                    <!-- 
+                   
                     <div id="2_2" class="homework__sub">
                         <h2 class="homework__sub-heading">
-                            2. Обмен значений между переменными
+                            2. Вычисление значения
                         </h2>
-                        <label class="homework__sub-label" for="var1">Переменная 1
-                            <input class="homework__sub-inout" type="number" name="var1" id="var1" value="1"></label>
-                        <label class="homework__sub-label" for="var2">Переменная 2
-                            <input class="homework__sub-inout" type="number" name="var1" id="var2" value="222"></label>
-                        <a href="#1_2" class="homework__sub-button" onclick="varChange();">Обменять</a>
+                        <p class="homework__sub-text">var a = 2;</p>
+                        <p class="homework__sub-text">var x = 1 + (a *= 2);</p>
+                        <div class="homework__sub-label">Мой ответ
+                            <div class="homework__sub-inout">5</div>
+                        </div>
+                        <a href="#1_4" class="homework__sub-button" onclick="checkFunc2();">Проверить</a>
+                        <div class="homework__sub-label">Ответ JS
+                            <div class="homework__sub-inout" id="checkId2"></div>
+                        </div>
                     </div>
-
+                        <!-- 
                     <div id="2_3" class="homework__sub">
                         <h2 class="homework__sub-heading">
                             3. Копирование значений переменных
