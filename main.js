@@ -4,14 +4,14 @@
 // п.1
 // 1. Результаты выполнения операторов
 function operatorsTest() {
-    var result="";
+    var result = "";
     var a = 1, b = 1, c, d;
-    c = ++a; result+=("Шаг1 c=" + c);           // 2. Сначала выполняется префиксный инкрменент ++a, a = 2, потом - присваивание с = 2.
-    d = b++; result+=("/ Шаг2 d=" + d);           // 1. Инкремент - в постфиксе, поэтому сначала выполняется присвоение d = 1, а потом - инкремент b++, b = 2.
-    c = (2+ ++a); result+=("/ Шаг3 c=" + c);      // 5. Сначала выполняется префиксный инкемент ++a, a = 3, как более приоритетный, чем сложение, затем сложение (2+3), затем присвоение c = 5.
-    d = (2 + b++); result+=("/ Шаг4 d=" + d);     // 4. Сначала выполняется сложение (2 + b), (4), потом постфиксный инкремент b++, b = 3. d = 4.
-    result+=("/ Шаг5 a=" + a);                    // 3. Выводится a, который на третьем шаге стал a = 3.
-    result+=("/ Шаг6 b=" + b);                    // 3. Выводится a, который на четвертом шаге стал b = 3.
+    c = ++a; result += ("Шаг1 c=" + c);           // 2. Сначала выполняется префиксный инкрменент ++a, a = 2, потом - присваивание с = 2.
+    d = b++; result += ("/ Шаг2 d=" + d);           // 1. Инкремент - в постфиксе, поэтому сначала выполняется присвоение d = 1, а потом - инкремент b++, b = 2.
+    c = (2 + ++a); result += ("/ Шаг3 c=" + c);      // 5. Сначала выполняется префиксный инкемент ++a, a = 3, как более приоритетный, чем сложение, затем сложение (2+3), затем присвоение c = 5.
+    d = (2 + b++); result += ("/ Шаг4 d=" + d);     // 4. Сначала выполняется сложение (2 + b), (4), потом постфиксный инкремент b++, b = 3. d = 4.
+    result += ("/ Шаг5 a=" + a);                    // 3. Выводится a, который на третьем шаге стал a = 3.
+    result += ("/ Шаг6 b=" + b);                    // 3. Выводится a, который на четвертом шаге стал b = 3.
     resultOutput = document.getElementById("operatorsId");
     resultOutput.innerHTML = result;
 }
@@ -37,7 +37,7 @@ function operCondition() {
     var a = document.getElementById("varA").value;
     var b = document.getElementById("varB").value;
     var resultDiv = document.getElementById("resultCondition");
-    var operation,result;
+    var operation, result;
     if (a >= 0) {
         if (b >= 0) {
             operation = "a-b";
@@ -69,47 +69,47 @@ function clearCondition() {
 // Вывод чисел от a до 15
 
 
-function viewRow(){
+function viewRow() {
     var a = document.getElementById("varAforRow").value;
     a = parseInt(a);
     var resultRow = document.getElementById("resultRow");
     var resultRowRec = document.getElementById("resultRowRec");
-    
-    
+
+
     if ((a < 0) || (a > 15)) {
-        var answer="Введите а от 0 до 15"
+        var answer = "Введите а от 0 до 15"
         resultRow.innerHTML = answer;
         resultRowRec.innerHTML = answer;
         return;
     }
     resultRowRec.innerHTML = viewRow_rec(a);
-    
+
     var result = "";
     switch (a) {
         case 0: result += a++ + " ";
-        case 1: result += a++ + " "; 
-        case 2: result += a++ +" ";
-        case 3: result += a++ +" ";
-        case 4: result += a++ +" ";
-        case 5: result += a++ +" ";
-        case 6: result += a++ +" ";
-        case 7: result += a++ +" ";
-        case 8: result += a++ +" ";
-        case 9: result += a++ +" ";
-        case 10: result += a++ +" ";
-        case 11: result += a++ +" ";
-        case 12: result += a++ +" ";
-        case 13: result += a++ +" ";
-        case 14: result += a++ +" ";
-        case 15: result += a++ +" ";
-        
+        case 1: result += a++ + " ";
+        case 2: result += a++ + " ";
+        case 3: result += a++ + " ";
+        case 4: result += a++ + " ";
+        case 5: result += a++ + " ";
+        case 6: result += a++ + " ";
+        case 7: result += a++ + " ";
+        case 8: result += a++ + " ";
+        case 9: result += a++ + " ";
+        case 10: result += a++ + " ";
+        case 11: result += a++ + " ";
+        case 12: result += a++ + " ";
+        case 13: result += a++ + " ";
+        case 14: result += a++ + " ";
+        case 15: result += a++ + " ";
+
     }
     resultRow.innerHTML = result;
-       
-    
+
+
     function viewRow_rec(num) {
         if (num > 15) return "";
-        return num+" "+viewRow_rec(++num);
+        return num + " " + viewRow_rec(++num);
     }
 
 }
@@ -130,7 +130,7 @@ function operationMath() {
     var a = document.getElementById("varAmath").value;
     var b = document.getElementById("varBmath").value;
     var operation = document.getElementById("varOperMath").value;
-    var resultMath= document.getElementById("resultMath");
+    var resultMath = document.getElementById("resultMath");
     a = parseInt(a);
     b = parseInt(b);
     // console.log(a, operation, b);
@@ -144,27 +144,27 @@ function operationMath() {
         return a - b;
     }
 
-    function mutliple1(a=0,b=0) {
+    function mutliple1(a = 0, b = 0) {
         return a * b;
     }
 
     function divide(a = 0, b = 1) {
-        return b==0? "деление на 0!" : (a / b).toFixed(3);
+        return b == 0 ? "деление на 0!" : (a / b).toFixed(3);
     }
 
     function mathOperation(a = 0, b = 0, operation) {
         switch (operation) {
             case "+":
-                return sum(a,b);
+                return sum(a, b);
                 break;
             case "-":
-                return subtract(a,b);
+                return subtract(a, b);
                 break;
             case "*":
-                return mutliple1(a,b);
+                return mutliple1(a, b);
                 break;
             case "/":
-                return divide(a,b);
+                return divide(a, b);
                 break;
             default:
                 return "Неверный оператор!";
@@ -182,6 +182,39 @@ function clearMath() {
     // resultOper.innerHTML = "+";
 
 }
+
+
+// п.7
+// 7
+//Сравнение null и 0
+
+function checkNull() {
+
+    // Согласно спецификации JS null!=0. null==0 только при ручном пользовательском приведении
+    var resultDiv = document.getElementById("checkNullId");
+    var result = "(null == 0?) - " + (null == 0)
+        + " // (Number(null) == 0?) - " + (Number(null) == 0);
+    resultDiv.innerHTML = result;
+}
+
+// п.8
+// 8
+//рекурсивная функция возведения в степень
+
+function powerFunc() {
+
+    alert("5^3=" + power(5, 3));
+    function power(val, pow) {
+
+        if (pow == 1) {
+
+            return val;
+        }
+        return val * power(val, pow - 1);
+
+    }
+}
+
 
 
 // Домашння работа №1

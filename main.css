@@ -7,6 +7,7 @@
 *,
 *:before,
 *:after {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -94,12 +95,18 @@ body {
 .header {
   background: #dbdbdb;
 }
+
 .header__top {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   min-height: 90px;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   border-bottom: 1px solid #cfcccc;
 }
+
 .header__logo {
   font-size: 2rem;
   font-weight: 700;
@@ -107,23 +114,34 @@ body {
   color: #3a3a3a;
   line-height: 3rem;
 }
+
 .header__hamburger {
   display: none;
   cursor: pointer;
 }
+
 .header__hamburger-line {
   width: 40px;
   border: 2px solid #3a3a3a;
   margin: 10px;
 }
+
 .header__menu > ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   margin-top: 15px;
 }
+
 .header__menu > ul > li {
-  flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
+
 .header__menu-link {
   display: inline-block;
   color: #575757;
@@ -134,12 +152,14 @@ body {
   text-align: center;
   width: 100%;
 }
+
 .header__menu-link_active {
   color: #3a3a3a;
   background: white;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
+
 .header__menu-link:hover {
   color: #ffffff;
   background: #8f8f8f;
@@ -148,14 +168,21 @@ body {
 }
 
 .breadcrumb__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   font-size: 1.2rem;
   color: #494949;
   line-height: 1.4rem;
   margin: 1rem auto 3rem;
 }
+
 .breadcrumb__link {
   color: inherit;
 }
@@ -163,10 +190,15 @@ body {
 .homework {
   min-height: 250px;
 }
+
 .homework__box {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
+
 .homework__heading {
   text-transform: uppercase;
   color: #494949;
@@ -175,18 +207,30 @@ body {
   margin: 20px 0;
   text-align: center;
 }
+
 .homework__sub {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  box-shadow: 0 0 10px #cfcccc;
-  flex: 1 0 31%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-shadow: 0 0 10px #cfcccc;
+          box-shadow: 0 0 10px #cfcccc;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 31%;
+          flex: 1 0 31%;
   min-height: 250px;
   padding: 15px;
   margin: 5px;
 }
+
 .homework__sub:hover {
-  box-shadow: 0 0 20px #363535;
+  -webkit-box-shadow: 0 0 20px #363535;
+          box-shadow: 0 0 20px #363535;
 }
+
 .homework__sub-heading {
   color: #494949;
   font-size: 1.1rem;
@@ -197,25 +241,40 @@ body {
   padding-bottom: 10px;
   margin-bottom: 5px;
 }
+
 .homework__sub-label {
   min-height: 30px;
   color: #494949;
   font-size: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   margin: 10px 0;
 }
+
 .homework__sub-inout {
   color: inherit;
   height: 100%;
   text-align: center;
   border: 1px solid #dbdbdb;
   width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
+
 .homework__sub-button {
   border: 1px solid #8f8f8f;
   padding: 8px 0;
@@ -226,19 +285,24 @@ body {
   font-size: 1rem;
   margin: 5px auto;
 }
+
 .homework__sub-button:hover {
   color: #ffffff;
   background: #494949;
 }
+
 .homework__sub-text {
   font-size: 1rem;
   color: #494949;
   margin: 5px 0;
   line-height: 1.2rem;
 }
+
 .homework__sub-table {
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: auto auto auto;
+  -ms-grid-columns: auto auto auto;
+      grid-template-columns: auto auto auto;
   grid-gap: 10px;
   font-size: 0.9rem;
   line-height: 1.1rem;
@@ -248,7 +312,9 @@ body {
 
 #i1_5,
 #i2_1 {
-  flex: 1 0 64.5%;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 64.5%;
+          flex: 1 0 64.5%;
 }
 
 .wide {
@@ -261,6 +327,7 @@ body {
 .footer {
   background: #3a3a3a;
 }
+
 .footer__container {
   color: #dbdbdb;
   margin-top: 40px;
@@ -274,18 +341,25 @@ body {
     font-size: 14px;
   }
 }
+
 @media screen and (max-width: 765px) {
   .header__top {
-    justify-content: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
-
   .homework__sub {
-    flex: 1 0 48%;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 0 48%;
+            flex: 1 0 48%;
   }
 }
+
 @media screen and (max-width: 540px) {
   .header__top {
-    justify-content: space-between;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
   }
   .header__logo {
     font-size: 1.5rem;
@@ -299,10 +373,12 @@ body {
     border-color: #dbdbdb;
   }
   .header #hamburger.open .header__hamburger-line-1 {
-    transform: rotate(45grad) translate(9px, 11px);
+    -webkit-transform: rotate(45grad) translate(9px, 11px);
+            transform: rotate(45grad) translate(9px, 11px);
   }
   .header #hamburger.open .header__hamburger-line-3 {
-    transform: rotate(-45grad) translate(9px, -11px);
+    -webkit-transform: rotate(-45grad) translate(9px, -11px);
+            transform: rotate(-45grad) translate(9px, -11px);
   }
   .header__menu {
     display: none;
@@ -315,7 +391,10 @@ body {
   }
   .header__menu > ul {
     position: absolute;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     z-index: 10;
     right: 10px;
     top: 90px;
@@ -327,8 +406,10 @@ body {
   .header__menu.mainMenuOpen {
     display: block;
   }
-
   .homework__sub {
-    flex: 1 0 90%;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 0 90%;
+            flex: 1 0 90%;
   }
-}/*# sourceMappingURL=main.css.map */
+}
+/*# sourceMappingURL=main.css.map */

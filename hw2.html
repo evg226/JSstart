@@ -62,46 +62,49 @@
                         <div class="homework__sub-table">
                             <p>Шаг 0</p>
                             <p>
-                            var a = 1, b = 1, c, d;</p>
+                                var a = 1, b = 1, c, d;</p>
                             <p></p>
                             <p>Шаг 1</p>
                             <p>
-                            c = ++a; alert("c=" + c);
+                                c = ++a; alert("c=" + c);
                             </p>
                             <p>
                                 // 2. Сначала выполняется префиксный инкрменент ++a, a = 2, потом - присваивание с = 2.
                             </p>
                             <p>Шаг 2</p>
                             <p>
-                            d = b++; alert("d=" + d);
+                                d = b++; alert("d=" + d);
                             </p>
                             <p>
-                                // 1. Инкремент - в постфиксе, поэтому сначала выполняется присвоение d = 1, а потом - инкремент b++, b = 2.
+                                // 1. Инкремент - в постфиксе, поэтому сначала выполняется присвоение d = 1, а потом -
+                                инкремент b++, b = 2.
                             </p>
                             <p>Шаг 3</p>
                             <p>
-                            c = (2+ ++a); alert("c=" + c);
+                                c = (2+ ++a); alert("c=" + c);
                             </p>
                             <p>
-                                // 5. Сначала выполняется префиксный инкемент ++a, a = 3, как более приоритетный, чем сложение, затем сложение (2+3), затем присвоение c = 5.
+                                // 5. Сначала выполняется префиксный инкемент ++a, a = 3, как более приоритетный, чем
+                                сложение, затем сложение (2+3), затем присвоение c = 5.
                             </p>
                             <p>Шаг 4</p>
                             <p>
-                            d = (2 + b++); alert("d=" + d); 
+                                d = (2 + b++); alert("d=" + d);
                             </p>
                             <p>
-                                // 4. Сначала выполняется сложение (2 + b), (4), потом постфиксный инкремент b++, b = 3. d = 4.
+                                // 4. Сначала выполняется сложение (2 + b), (4), потом постфиксный инкремент b++, b = 3.
+                                d = 4.
                             </p>
                             <p>Шаг 5</p>
                             <p>
-                            alert("a=" + a);
+                                alert("a=" + a);
                             </p>
                             <p>
                                 // 3. Выводится a, который на третьем шаге стал a = 3.
                             </p>
                             <p>Шаг 6</p>
                             <p>
-                            alert("b=" + b);
+                                alert("b=" + b);
                             </p>
                             <p>
                                 // 3. Выводится a, который на четвертом шаге стал b = 3.
@@ -113,7 +116,7 @@
                             <div class="homework__sub-inout wide" id="operatorsId"></div>
                         </div>
                     </div>
-                   
+
                     <div id="2_2" class="homework__sub">
                         <h2 class="homework__sub-heading">
                             2. Вычисление значения
@@ -128,7 +131,7 @@
                             <div class="homework__sub-inout" id="checkId2"></div>
                         </div>
                     </div>
-                       
+
                     <div id="2_3" class="homework__sub">
                         <h2 class="homework__sub-heading">
                             3. Операция с условием
@@ -137,8 +140,8 @@
                             <input class="homework__sub-inout" type="number" onclick="clearCondition();" name="varA"
                                 id="varA" value="5">
                         </label>
-                        <label class="homework__sub-label" for="varB">Переменная b                           
-                             <input class="homework__sub-inout" type="number" onclick="clearCondition();" name="varB"
+                        <label class="homework__sub-label" for="varB">Переменная b
+                            <input class="homework__sub-inout" type="number" onclick="clearCondition();" name="varB"
                                 id="varB" value="10">
                         </label>
                         <a href="#2_3" class="homework__sub-button" onclick="operCondition();">Выполнить</a>
@@ -184,24 +187,35 @@
                         <div class="homework__sub-label">Результат
                             <div class="homework__sub-inout wide" id="resultMath"></div>
                         </div>
-                        
+
                     </div>
-<!-- 
+
                     <div id="2_7" class="homework__sub">
                         <h2 class="homework__sub-heading">
                             7. Сравнение null и 0
                         </h2>
                         <p class="homework__sub-text">Сравнить null и 0</p>
-                        <div class="homework__sub-label">Мой ответ
-                            <div class="homework__sub-inout"></div>
-                        </div>
-                        <a href="#2_7" class="homework__sub-button" onclick="checkFunc2();">Проверить</a>
-                        <div class="homework__sub-label">Ответ JS
-                            <div class="homework__sub-inout" id="checkId2"></div>
-                        </div>
-                    </div> -->
 
-                     
+                        <p class="homework__sub-text">Мой ответ - Согласно спецификации JS null!=0. null==0 только при
+                            ручном приведении</p>
+
+                        <a href="#2_7" class="homework__sub-button wide" onclick="checkNull();">Проверить</a>
+                        <div class="homework__sub-label">Ответ JS
+                            <div class="homework__sub-inout" id="checkNullId"></div>
+                        </div>
+                    </div>
+                    <div id="2_8" class="homework__sub">
+                        <h2 class="homework__sub-heading">
+                            8. Рекурсивная функция возведения в степень
+                        </h2>
+
+                        <a href="#2_8" class="homework__sub-button" onclick="powerFunc();">Запустить</a>
+                        <div class="homework__sub-label">Результат
+                            <div class="homework__sub-inout" id="powerId"></div>
+                        </div>
+                    </div>
+
+
                 </div>
 
             </div>
