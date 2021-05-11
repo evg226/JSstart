@@ -2,6 +2,7 @@
 // *************************
 
 // п.1
+// 1. Результаты выполнения операторов
 function operatorsTest() {
     var result="";
     var a = 1, b = 1, c, d;
@@ -16,7 +17,9 @@ function operatorsTest() {
 }
 
 // п.2
+// 2. Вычисление значения
 // Проверка моего ответа
+
 function checkFunc2() {
     var outpt = document.getElementById("checkId2");
     var a = 2;
@@ -25,6 +28,160 @@ function checkFunc2() {
     outpt.innerHTML = x;
 }
 
+
+// п.3
+// 3. Операция с условием
+// Проверка моего ответа
+
+function operCondition() {
+    var a = document.getElementById("varA").value;
+    var b = document.getElementById("varB").value;
+    var resultDiv = document.getElementById("resultCondition");
+    var operation,result;
+    if (a >= 0) {
+        if (b >= 0) {
+            operation = "a-b";
+            result = a - b;
+        } else if (b < 0) {
+            operation = "a+b";
+            result = parseInt(a) + parseInt(b);
+        }
+    } else if (a < 0) {
+        if (b >= 0) {
+            operation = "a+b";
+            result = parseInt(a) + parseInt(b);
+        } else if (b < 0) {
+            operation = "a*b";
+            result = a * b;
+        }
+    }
+
+    resultDiv.innerHTML = result + " (" + operation + ")";
+}
+
+function clearCondition() {
+    var resultDiv = document.getElementById("resultCondition");
+    resultDiv.innerHTML = "";
+}
+
+// п.4
+// 4. 
+// Вывод чисел от a до 15
+
+
+function viewRow(){
+    var a = document.getElementById("varAforRow").value;
+    a = parseInt(a);
+    var resultRow = document.getElementById("resultRow");
+    var resultRowRec = document.getElementById("resultRowRec");
+    
+    
+    if ((a < 0) || (a > 15)) {
+        var answer="Введите а от 0 до 15"
+        resultRow.innerHTML = answer;
+        resultRowRec.innerHTML = answer;
+        return;
+    }
+    resultRowRec.innerHTML = viewRow_rec(a);
+    
+    var result = "";
+    switch (a) {
+        case 0: result += a++ + " ";
+        case 1: result += a++ + " "; 
+        case 2: result += a++ +" ";
+        case 3: result += a++ +" ";
+        case 4: result += a++ +" ";
+        case 5: result += a++ +" ";
+        case 6: result += a++ +" ";
+        case 7: result += a++ +" ";
+        case 8: result += a++ +" ";
+        case 9: result += a++ +" ";
+        case 10: result += a++ +" ";
+        case 11: result += a++ +" ";
+        case 12: result += a++ +" ";
+        case 13: result += a++ +" ";
+        case 14: result += a++ +" ";
+        case 15: result += a++ +" ";
+        
+    }
+    resultRow.innerHTML = result;
+       
+    
+    function viewRow_rec(num) {
+        if (num > 15) return "";
+        return num+" "+viewRow_rec(++num);
+    }
+
+}
+
+function clearRow() {
+    var resultDiv = document.getElementById("resultRow");
+    resultDiv.innerHTML = "";
+    var resultRowRec = document.getElementById("resultRowRec");
+    resultRowRec.innerHTML = "";
+}
+
+
+// п.5-6
+// 5-6 
+// Функции с арифметическими операциями
+
+function operationMath() {
+    var a = document.getElementById("varAmath").value;
+    var b = document.getElementById("varBmath").value;
+    var operation = document.getElementById("varOperMath").value;
+    var resultMath= document.getElementById("resultMath");
+    a = parseInt(a);
+    b = parseInt(b);
+    // console.log(a, operation, b);
+    resultMath.innerHTML = mathOperation(a, b, operation);
+
+    function sum(a = 0, b = 0) {
+        return a + b;
+    }
+
+    function subtract(a = 0, b = 0) {
+        return a - b;
+    }
+
+    function mutliple1(a=0,b=0) {
+        return a * b;
+    }
+
+    function divide(a = 0, b = 1) {
+        return b==0? "деление на 0!" : (a / b).toFixed(3);
+    }
+
+    function mathOperation(a = 0, b = 0, operation) {
+        switch (operation) {
+            case "+":
+                return sum(a,b);
+                break;
+            case "-":
+                return subtract(a,b);
+                break;
+            case "*":
+                return mutliple1(a,b);
+                break;
+            case "/":
+                return divide(a,b);
+                break;
+            default:
+                return "Неверный оператор!";
+                break;
+        }
+    }
+
+
+}
+
+function clearMath() {
+    var resultMath = document.getElementById("resultMath");
+    resultMath.innerHTML = "";
+    // var resultOper = document.getElementById("varOperMath");
+    // resultOper.innerHTML = "+";
+
+}
 
 
 // Домашння работа №1
