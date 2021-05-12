@@ -202,12 +202,20 @@ function checkNull() {
 //рекурсивная функция возведения в степень
 
 function powerFunc() {
-
-    alert("5^3=" + power(5, 3));
+    var val = document.getElementById("val").value;
+    var pow = document.getElementById("pow").value;
+    var powerDiv = document.getElementById("powerId");
+    // alert("5^3=" + power(5, 3));
+    powerDiv.innerHTML = power(val, pow);
     function power(val, pow) {
 
+        if (pow < 0) {
+            return "Степень меньше 0!";
+        }
+        if (pow == 0) {
+            return 1;
+        }
         if (pow == 1) {
-
             return val;
         }
         return val * power(val, pow - 1);
