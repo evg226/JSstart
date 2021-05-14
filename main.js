@@ -46,7 +46,7 @@ function costCart(){
         // var result=0;
         // for (var index = 0; index < cart.length; index++){
         //     console.log(cart[index].price);
-        //     result += cart[index].price;
+        //     result += cart[index].price*cart[index].quantity;
         // }
         // console.log(result);
         
@@ -54,7 +54,7 @@ function costCart(){
         // var result=0;
         // for (var item of cart){
         //     console.log(item.price);
-        //     result += item.price;
+        //     result += item.price*item.quantity;
         // }
         // console.log(result);
         
@@ -62,17 +62,16 @@ function costCart(){
         // var result=0;
         // for (var index in cart){
         //     console.log(cart[index].price);
-        //     result += cart[index].price;
+        //     result += cart[index].price*cart[index].quantity;
         // }
         // console.log(result);
         
         // console.log("_________");
         var result = 0;
         cart.forEach(function (item,index) {
-            console.log((index+1) +"-ая цена: "+item.price+ " или " +cart[index].price)
-            result += item.price;
+            result += item.price*item.quantity; //К стоимости корзины прибавляется произведение цены текущего товра к стоимости
         });
-        // console.log(result);
+        // console.log("result="+result);
         return result;
     }
 }
