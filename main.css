@@ -151,6 +151,7 @@ body {
   padding: 20px 0;
   text-align: center;
   width: 100%;
+  cursor: pointer;
 }
 
 .header__menu-link_active {
@@ -180,7 +181,7 @@ body {
   font-size: 1.2rem;
   color: #494949;
   line-height: 1.4rem;
-  margin: 1rem 0 3rem;
+  margin: 1rem auto 3rem;
 }
 
 .breadcrumb__link {
@@ -222,9 +223,6 @@ body {
       -ms-flex: 1 0 31%;
           flex: 1 0 31%;
   min-height: 250px;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
   padding: 15px;
   margin: 5px;
 }
@@ -242,10 +240,11 @@ body {
   text-align: center;
   border-bottom: 1px solid #dbdbdb;
   padding-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .homework__sub-label {
-  height: 30px;
+  min-height: 30px;
   color: #494949;
   font-size: 1rem;
   display: -webkit-box;
@@ -257,6 +256,7 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  margin: 10px 0;
 }
 
 .homework__sub-inout {
@@ -279,12 +279,12 @@ body {
 .homework__sub-button {
   border: 1px solid #8f8f8f;
   padding: 8px 0;
-  margin: 0 auto;
   min-width: 50%;
   text-align: center;
   background: #dbdbdb;
   color: #575757;
   font-size: 1rem;
+  margin: 5px auto;
 }
 
 .homework__sub-button:hover {
@@ -299,10 +299,31 @@ body {
   line-height: 1.2rem;
 }
 
-#i1_5 {
+.homework__sub-table {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto auto auto;
+      grid-template-columns: auto auto auto;
+  grid-gap: 10px;
+  font-size: 0.9rem;
+  line-height: 1.1rem;
+  color: #494949;
+  margin: 10px 0;
+}
+
+#i1_5,
+#i2_1,
+#i3_2 {
   -webkit-box-flex: 1;
       -ms-flex: 1 0 64.5%;
           flex: 1 0 64.5%;
+}
+
+.wide {
+  height: auto;
+  min-height: 30px;
+  padding: 8px;
+  line-height: 1.2rem;
 }
 
 .footer {
@@ -381,7 +402,7 @@ body {
     top: 90px;
     background: white;
     margin: 0;
-    border: 1px solid  #cfcccc;
+    border: 1px solid #cfcccc;
     border-top: none;
   }
   .header__menu.mainMenuOpen {

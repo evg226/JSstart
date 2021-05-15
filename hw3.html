@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>Java script : Базовый курс</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header__container container">
+            <div class="header__top">
+                <a href="index.html" class="header__logo">Java&nbsp;script. Базовый&nbsp;курс</a>
+                <div class="header__hamburger" id="hamburger">
+                    <div class="header__hamburger-line header__hamburger-line-1"></div>
+                    <div class="header__hamburger-line header__hamburger-line-2"></div>
+                    <div class="header__hamburger-line header__hamburger-line-3"></div>
+                </div>
+            </div>
+            <nav class="header__menu" id="mainMenu">
+                <ul>
+                    <li><a href="hw1.html" class="header__menu-link">hw1</a></li>
+                    <li><a href="hw2.html" class="header__menu-link">hw2</a></li>
+                    <li><a href="hw3.html" class="header__menu-link header__menu-link_active">hw3</a></li>
+                    <li><a href="hw4.html" class="header__menu-link">hw4-8</a></li>
+                    <!-- <li><a href="hw5.html" class="header__menu-link">hw5</a></li>
+                    <li><a href="hw6.html" class="header__menu-link">hw6</a></li>
+                    <li><a href="hw7.html" class="header__menu-link">hw7</a></li>
+                    <li><a href="hw8.html" class="header__menu-link">hw8</a></li> -->
+                </ul>
+            </nav>
+        </div>
+
+    </header>
+
+    <main>
+        <nav class="breadcrumb">
+            <div class="breadcrumb__container container">
+                <span class="breadcrumb__left">JS-код находится в файле <b>main.js</b></span>
+                <span class="breadcrumb__right"><a href="index.html"
+                        class="breadcrumb__link">Главная</a>&nbsp;/&nbsp;HW3</span>
+            </div>
+        </nav>
+
+
+        <section class="homework">
+
+
+            <div class="homework__container container">
+                <h1 class="homework__heading">
+                    Домашняя работа №3
+                </h1>
+
+                <div class="homework__box">
+                    <div id="i3_1" class="homework__sub">
+                        <h2 class="homework__sub-heading">
+                            1. Простые числа от 0 до 100
+                        </h2>
+                        <label class="homework__sub-label" for="simpleMax">От 0 до :
+                            <input class="homework__sub-inout" type="number" name="simpleMax" id="simpleMax"
+                                value="100"></label>
+                        <a href="#i3_1" class="homework__sub-button" onclick="simpleNumbers();">Найти</a>
+                        <div class="homework__sub-label"> Результат
+                            <div class="homework__sub-inout" id="resultSimpleId"></div>
+                        </div>
+                    </div>
+                    <div id="i3_2" class="homework__sub">
+                        <h2 class="homework__sub-heading">
+                            2-3. Интернет-магазин - корзина и стоимость
+                        </h2>
+                        <!-- <label class="homework__sub-label" for="simpleMax">От 0 до :
+                            <input class="homework__sub-inout" type="number" name="simpleMax" id="simpleMax" value="100"></label> -->
+                        <p class="homework__sub-text"> Дана корзина: var cart = [</p>
+                        <p class="homework__sub-text">{ nameItem: "Куртка", price: 130, quantity: 2 },</p>
+                        <p class="homework__sub-text">{ nameItem: "Брюки", price: 90, quantity: 3 },</p>
+                        <p class="homework__sub-text">{ nameItem: "Галстук",price: 30,quantity: 2}]</p>
+
+                        <a href="#i3_2" class="homework__sub-button" onclick="costCart();">Стоимость</a>
+
+                        <div class="homework__sub-label"> Корзина, руб
+                            <div class="homework__sub-inout" id="resultIS"></div>
+                        </div>
+                    </div>
+
+
+
+                    <div id="3_4" class="homework__sub">
+                        <h2 class="homework__sub-heading">
+                            4. Вывод чисел от 0 до 9
+                        </h2>
+                        <!-- <label class="homework__sub-label" for="simpleMax">От 0 до :
+                            <input class="homework__sub-inout" type="number" name="simpleMax" id="simpleMax" value="100"></label> -->
+                        <p class="homework__sub-text"> Вывод чисел от 0 до 9 в цикле for без тела цикла</p>
+
+                        <a href="#3_4" class="homework__sub-button" onclick="forNotBody();">Вывести</a>
+
+                        <div class="homework__sub-label"> Результат
+                            <div class="homework__sub-inout" id="forId"></div>
+                        </div>
+                    </div>
+
+                    <div id="3_5" class="homework__sub">
+                        <h2 class="homework__sub-heading">
+                            5. Нарисовать пирамиду с помощью console.log
+                        </h2>
+                        <!-- <label class="homework__sub-label" for="simpleMax">От 0 до :
+                            <input class="homework__sub-inout" type="number" name="simpleMax" id="simpleMax" value="100"></label> -->
+                        <p class="homework__sub-text"> Вывод 20 строк будет осуществлен в консоли браузера</p>
+
+                        <a href="#3_5" class="homework__sub-button" onclick="pyramid();">Вывести</a>
+
+                        <div class="homework__sub-label"> Результат - см. в console
+                            <div class="homework__sub-inout" id="pydamidId"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer__container container">
+            &copy; Evgeny Ivanov 2021 Домашние задания Java Script - Базовый курс
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
