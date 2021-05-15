@@ -48,72 +48,21 @@
 
         <section class="homework">
 
-
             <div class="homework__container container">
                 <h1 class="homework__heading" id="pageHeader">
                     Домашняя работа №3
                 </h1>
 
                 <div class="homework__box" id="activeBox">
-                    <div id="i3_1" class="homework__sub">
+                    <div class="homework__sub">
                         <h2 class="homework__sub-heading">
-                            1. Простые числа от 0 до 100
+                            1. Преобразование числа в объект
                         </h2>
-                        <label class="homework__sub-label" for="simpleMax">От 0 до :
-                            <input class="homework__sub-inout" type="number" name="simpleMax" id="simpleMax"
-                                value="100"></label>
-                        <a href="#i3_1" class="homework__sub-button" onclick="simpleNumbers();">Найти</a>
+                        <label class="homework__sub-label">Введите число от 1 до 999
+                            <input class="homework__sub-inout" type="number" id="input_hw4_1"></label>
+                        <a class="homework__sub-button" onclick="simpleNumbers();">Найти</a>
                         <div class="homework__sub-label"> Результат
-                            <div class="homework__sub-inout" id="resultSimpleId"></div>
-                        </div>
-                    </div>
-                    <div id="i3_2" class="homework__sub">
-                        <h2 class="homework__sub-heading">
-                            2-3. Интернет-магазин - корзина и стоимость
-                        </h2>
-                        <!-- <label class="homework__sub-label" for="simpleMax">От 0 до :
-                            <input class="homework__sub-inout" type="number" name="simpleMax" id="simpleMax" value="100"></label> -->
-                        <p class="homework__sub-text"> Дана корзина: var cart = [</p>
-                        <p class="homework__sub-text">{ nameItem: "Куртка", price: 130, quantity: 2 },</p>
-                        <p class="homework__sub-text">{ nameItem: "Брюки", price: 90, quantity: 3 },</p>
-                        <p class="homework__sub-text">{ nameItem: "Галстук",price: 30,quantity: 2}]</p>
-
-                        <a href="#i3_2" class="homework__sub-button" onclick="costCart();">Стоимость</a>
-
-                        <div class="homework__sub-label"> Корзина, руб
-                            <div class="homework__sub-inout" id="resultIS"></div>
-                        </div>
-                    </div>
-
-
-
-                    <div id="3_4" class="homework__sub">
-                        <h2 class="homework__sub-heading">
-                            4. Вывод чисел от 0 до 9
-                        </h2>
-                        <!-- <label class="homework__sub-label" for="simpleMax">От 0 до :
-                            <input class="homework__sub-inout" type="number" name="simpleMax" id="simpleMax" value="100"></label> -->
-                        <p class="homework__sub-text"> Вывод чисел от 0 до 9 в цикле for без тела цикла</p>
-
-                        <a href="#3_4" class="homework__sub-button" onclick="forNotBody();">Вывести</a>
-
-                        <div class="homework__sub-label"> Результат
-                            <div class="homework__sub-inout" id="forId"></div>
-                        </div>
-                    </div>
-
-                    <div id="3_5" class="homework__sub">
-                        <h2 class="homework__sub-heading">
-                            5. Нарисовать пирамиду с помощью console.log
-                        </h2>
-                        <!-- <label class="homework__sub-label" for="simpleMax">От 0 до :
-                            <input class="homework__sub-inout" type="number" name="simpleMax" id="simpleMax" value="100"></label> -->
-                        <p class="homework__sub-text"> Вывод 20 строк будет осуществлен в консоли браузера</p>
-
-                        <a href="#3_5" class="homework__sub-button" onclick="pyramid();">Вывести</a>
-
-                        <div class="homework__sub-label"> Результат - см. в console
-                            <div class="homework__sub-inout" id="pydamidId"></div>
+                            <div class="homework__sub-inout" id="output_hw4_1"></div>
                         </div>
                     </div>
 
@@ -131,8 +80,9 @@
         </div>
     </footer>
 
-    <script src="main.js"></script>
-    <script src="menu.js"></script>
+    <script defer src="main.js"></script>
+    <script defer src="menu.js"></script>
+
 </body>
 
 </html>

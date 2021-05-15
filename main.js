@@ -4,10 +4,117 @@
 // п.1
 // преобразование числа в объект
 function f4p1() {
-    var number = +prompt("Введите число");
+    var inputNumber = document.getElementById("input_hw4_1").value;
+    var outputDiv = document.getElementById("output_hw4_1");
+
+    var numberObj = DoNumberObj(inputNumber);
+    console.log(numberObj);
+    outputDiv.innerHTML = numberObj;
+
+    function DoNumberObj(currentNumber) {
+        if (currentNumber > 999) {
+            return "Введите число меньше 1000";
+        }
+        console.log(currentNumber);
+        resultObj = {};
+        resultObj["Единицы"] = currentNumber % 10;
+        currentNumber = (currentNumber - resultObj["Единицы"]) / 10;
+        resultObj["Десятки"] = currentNumber % 10;
+        currentNumber = (currentNumber - resultObj["Десятки"]) / 10;
+        resultObj["Сотни"] = currentNumber % 10;
+        resultObj.toString = function () {
+            return `Object{ Сотни:${this["Сотни"]}, Десятки:${this["Десятки"]}, Единицы:${this["Единицы"]} }`;
+        }
+        return resultObj;
+    }
 
 }
 
+// п.2
+// Игра Быки и Коровы
+var currentNumber = false;
+var attemps = 0;
+var steps = [];//ходы игрока;
+
+function f4p2() { //пользователь начинает игру, ПК Загадывает число и помещает его в currentNumber
+
+    var outputDiv = document.getElementById("output_hw4_2");
+    var outputDivExt = document.getElementById("output_hw4_2ext");
+    var buttonStartStop = document.getElementById("button_hw4_2");
+    currentNumber = generateNumber();
+    outputDiv.innerHTML = "";
+    attemps = 0;
+    steps = [];
+    if (buttonStartStop.innerHTML == "Стоп") {
+        buttonStartStop.innerHTML = "Старт";
+        outputDivExt.innerHTML = "Игра завершена пользователем!";
+        currentNumber = false;
+
+        // console.log(currentNumber == false);
+        return;
+    }
+    console.log(currentNumber);
+    outputDivExt.innerHTML = "Игра продолжается! Сгенерировано число: " + currentNumber.join("");
+    buttonStartStop.innerHTML = "Стоп";
+
+
+    function generateNumber() {
+        const min = 1, max = 9;
+        var number = [];
+        for (i = 0; i < 4; i++) {
+            var part = Math.round(Math.random() * (max - min) + min);
+            while (number.indexOf(part) != -1) {
+                part = Math.round(Math.random() * (max - min) + min);
+            }
+            number[i] = part;
+        }
+        return number;
+    }
+}
+
+function f4p2ext() {
+    var inputNumber = parseInt(document.getElementById("input_hw4_2").value);
+    var outputDiv = document.getElementById("output_hw4_2");
+    var outputDivExt = document.getElementById("output_hw4_2ext");
+    var buttonStartStop = document.getElementById("button_hw4_2");
+    var gameResult = [0, 0]; // 1- быки, 2-коровы
+    if (currentNumber) {
+
+        if (inputNumber > 1000 && inputNumber < 9999) {
+            var inputArr = String(inputNumber).split("");
+
+            inputArr.forEach(function (item, i) {
+                if (item == currentNumber[i]) {
+                    gameResult[0]++;
+                }
+                else {
+                    gameResult[1]++;
+                }
+            });
+            attemps++;
+            steps.push(gameResult);
+            if (gameResult[0] == 4) {
+                buttonStartStop.innerHTML = "Старт";
+                outputDivExt.innerHTML = "Игра завершена!";
+                currentNumber = false;
+                var res = "";
+                steps.forEach(function (item, i) {
+                    res += `Шаг-${i+1}: Быки:${item[0]} Коровы:${item[1]}<br>`;
+                    console.log(res);
+                });
+                outputDiv.innerHTML = res;
+                return;
+
+            }
+            outputDiv.innerHTML = `Быки:${gameResult[0]} Коровы:${gameResult[1]} Попыток:${attemps}`;
+
+        } else {
+            outputDiv.innerHTML = "Введите четырехзначное число";
+        }
+    } else {
+        outputDiv.innerHTML = "Запустите игру!";
+    }
+}
 
 // Домашння работа №3
 // *************************
