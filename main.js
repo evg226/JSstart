@@ -12,28 +12,53 @@ function f4p1() {
     outputDiv.innerHTML = numberObj;
 
     function DoNumberObj(currentNumber) {
-        if (currentNumber > 999) {
-            return "Введите число меньше 1000";
+        if ((currentNumber > 0) && (currentNumber < 999)) {// Код по условиям задачи
+            var resultObj = {};
+            resultObj["Единицы"] = currentNumber % 10;
+            currentNumber = (currentNumber - resultObj["Единицы"]) / 10;
+            resultObj["Десятки"] = currentNumber % 10;
+            currentNumber = (currentNumber - resultObj["Десятки"]) / 10;
+            resultObj["Сотни"] = currentNumber % 10;
+            resultObj.toString = function () {
+                return `Object{ Сотни:${this["Сотни"]}, Десятки:${this["Десятки"]}, Единицы:${this["Единицы"]} }`;
+            }
+        }  else { // расширение кода для любого положительного целого значения (по 2 способу решения)
+            resultObj = {};
+            var toString = "Object{<br>";
+            var digit = [ //Массив для названий стойств объекта
+                "Единицы", "Десятки", "Сотни", "Тысячи", "Десятки тысяч", "Сотни тысяч", "Миллионы", "Десятки миллионов", "Сотни миллионов", "Миллиарды"
+            ];
+            // console.log(currentNumber.length);
+            
+            for (var i = currentNumber.length - 1; i >= 0; i--){
+                
+                var prop = typeof(digit[i]) == "undefined" ? "1"+doString('0',i+1) : digit[i]; //Формируем имя стойства 
+                var val = currentNumber[currentNumber.length - i - 1];//значение свойства
+                // console.log(i + ` ${prop}: ${val}`);
+                resultObj[prop] = val;
+                toString += `${prop}: ${resultObj[prop]},<br>`;
+            }
+            toString += " }";
+            resultObj.toString = function () { return toString; };
         }
-        console.log(currentNumber);
-        resultObj = {};
-        resultObj["Единицы"] = currentNumber % 10;
-        currentNumber = (currentNumber - resultObj["Единицы"]) / 10;
-        resultObj["Десятки"] = currentNumber % 10;
-        currentNumber = (currentNumber - resultObj["Десятки"]) / 10;
-        resultObj["Сотни"] = currentNumber % 10;
-        resultObj.toString = function () {
-            return `Object{ Сотни:${this["Сотни"]}, Десятки:${this["Десятки"]}, Единицы:${this["Единицы"]} }`;
-        }
+
         return resultObj;
+    }
+
+    function doString( str, len) {
+        var result = "";
+        for (var i = 1; i < len; i++) {
+            result += str;
+        }
+        return result;
     }
 
 }
 
 // п.2
 // Игра Быки и Коровы
-var currentNumber = false;
-var attemps = 0;
+var currentNumber = false;//для загадываемого числа
+var attemps = 0;//попытки
 var steps = [];//ходы игрока;
 
 function f4p2() { //пользователь начинает игру, ПК Загадывает число и помещает его в currentNumber
@@ -41,24 +66,26 @@ function f4p2() { //пользователь начинает игру, ПК З�
     var outputDiv = document.getElementById("output_hw4_2");
     var outputDivExt = document.getElementById("output_hw4_2ext");
     var buttonStartStop = document.getElementById("button_hw4_2");
+
     currentNumber = generateNumber();
     outputDiv.innerHTML = "";
+
     attemps = 0;
     steps = [];
-    if (buttonStartStop.innerHTML == "Стоп") {
+
+    if (buttonStartStop.innerHTML == "Стоп") { //для принудильного завершения игры
         buttonStartStop.innerHTML = "Старт";
         outputDivExt.innerHTML = "Игра завершена пользователем!";
         currentNumber = false;
-
         // console.log(currentNumber == false);
         return;
     }
     console.log(currentNumber);
-    outputDivExt.innerHTML = "Игра продолжается! Сгенерировано число: " + currentNumber.join("");
+    outputDivExt.innerHTML = "Игра начата! Сгенерировано число: " + currentNumber.join(""); // число отображается в отладочном режиме
     buttonStartStop.innerHTML = "Стоп";
 
 
-    function generateNumber() {
+    function generateNumber() { //для гегерирования 4 значного числа, помещается в массив
         const min = 1, max = 9;
         var number = [];
         for (i = 0; i < 4; i++) {
@@ -72,41 +99,55 @@ function f4p2() { //пользователь начинает игру, ПК З�
     }
 }
 
-function f4p2ext() {
-    var inputNumber = parseInt(document.getElementById("input_hw4_2").value);
-    var outputDiv = document.getElementById("output_hw4_2");
-    var outputDivExt = document.getElementById("output_hw4_2ext");
+function f4p2ext() { // пользователь делает ходы (кнопка Подтвердить в верстке)
+    var inputNumber = parseInt(document.getElementById("input_hw4_2").value); // число введенное пользователем
+    var outputDiv = document.getElementById("output_hw4_2");// для вывода результатов игры
+    var outputDivExt = document.getElementById("output_hw4_2ext");//табло состояния игры
     var buttonStartStop = document.getElementById("button_hw4_2");
-    var gameResult = [0, 0]; // 1- быки, 2-коровы
-    if (currentNumber) {
 
-        if (inputNumber > 1000 && inputNumber < 9999) {
+    var gameResult = [0, 0]; // 1- быки, 2-коровы
+
+    if (currentNumber) { // проверка было ли начата игра
+
+        if (inputNumber > 1000 && inputNumber < 9999) {//проверка числа введеого
             var inputArr = String(inputNumber).split("");
 
             inputArr.forEach(function (item, i) {
-                if (item == currentNumber[i]) {
+                if (parseInt(item) == currentNumber[i]) {//счетчик быков
                     gameResult[0]++;
                 }
-                else {
+                else if (currentNumber.indexOf(parseInt(item))!=-1){//счетчик коров
                     gameResult[1]++;
                 }
+                // console.log(currentNumber.indexOf(parseInt(item))+" "+item);
             });
             attemps++;
-            steps.push(gameResult);
+            steps.push(gameResult); //запись шагов
+            outputDiv.innerHTML = `Быки:${gameResult[0]} Коровы:${gameResult[1]} Попыток:${attemps}`;
+
             if (gameResult[0] == 4) {
                 buttonStartStop.innerHTML = "Старт";
                 outputDivExt.innerHTML = "Игра завершена!";
                 currentNumber = false;
+                
+                // Вывод шагов (или выбранного шага)
                 var res = "";
-                steps.forEach(function (item, i) {
-                    res += `Шаг-${i+1}: Быки:${item[0]} Коровы:${item[1]}<br>`;
+                var outputStep = +prompt(`Шагов было:${attemps}. Какой шаг хотите посмотреть? (0 или несущ. шаг выводит все шаги)`);
+               if (outputStep > 0 && outputStep <= attemps) {
+                    res += `Шаг-${outputStep}: Быки:${steps[outputStep-1][0]} Коровы:${steps[outputStep-1][1]}<br>`;
+               } else  {
+                    steps.forEach(function (item, i) {
+                    res += `Шаг-${i + 1}: Быки:${item[0]} Коровы:${item[1]}<br>`;
                     console.log(res);
                 });
+                }
+            
                 outputDiv.innerHTML = res;
+                
                 return;
 
             }
-            outputDiv.innerHTML = `Быки:${gameResult[0]} Коровы:${gameResult[1]} Попыток:${attemps}`;
+            
 
         } else {
             outputDiv.innerHTML = "Введите четырехзначное число";
