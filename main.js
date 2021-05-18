@@ -81,12 +81,9 @@ function costCart(){
 
 function forNotBody(){
     forId = document.getElementById("forId");
-    var index = 0,result=[];
-    for (;;) {
-        result.push(index++);
-        if (index > 9) {
-            break;
-        }
+    var result=[];
+    for (var index=0;index<10;result.push(index++)) {
+        // пусто
     }
     forId.innerHTML = result.join(" ");
 }
@@ -96,9 +93,11 @@ function forNotBody(){
 
 function pyramid() {
     var result = "";
+    var pydamidId = document.getElementById("pydamidId");
     for (index = 0; index < 20; index++){
         console.log(result += "X");
     }
+    pydamidId.innerHTML = "см.в console";
 }
 
 // Домашння работа №2
