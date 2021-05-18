@@ -134,6 +134,7 @@ body {
   text-align: center;
   width: 100%;
   cursor: pointer;
+  transition: background 0.5s ease, color 0.3s ease, border-top-left-radius 0.5s ease, border-top-right-radius 0.5s ease;
 }
 .header__menu-link_active {
   color: #3a3a3a;
@@ -184,6 +185,7 @@ body {
   min-height: 250px;
   padding: 15px;
   margin: 5px;
+  transition: box-shadow 0.5s ease;
 }
 .homework__sub:hover {
   box-shadow: 0 0 20px #363535;
@@ -220,7 +222,7 @@ body {
 .homework__sub-check {
   color: #494949;
   margin: 5px 10px 5px 0;
-  width: 50%;
+  flex: 0 0 50%;
 }
 .homework__sub-check-radio {
   color: inherit;
@@ -237,6 +239,8 @@ body {
   color: #575757;
   font-size: 1rem;
   margin: 5px auto;
+  transition: background 0.5s ease, color 0.3s ease;
+  cursor: pointer;
 }
 .homework__sub-button:hover {
   color: #ffffff;
@@ -319,6 +323,7 @@ body {
   }
   .header__menu {
     display: none;
+    opacity: 0;
   }
   .header__menu-link {
     padding: 10px 20px;
@@ -339,6 +344,7 @@ body {
   }
   .header__menu.mainMenuOpen {
     display: block;
+    opacity: 1;
   }
 
   .homework__sub {

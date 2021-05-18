@@ -661,6 +661,10 @@ buttonHamb.onclick = function () {
     var menu = document.getElementById("mainMenu");
     menu.classList.toggle("mainMenuOpen");
     buttonHamb.classList.toggle("open");
+    menu.onclick = function () {
+        menu.classList.toggle("mainMenuOpen");
+        buttonHamb.classList.toggle("open");
+    }
 }
 
 
