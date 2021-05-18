@@ -72,14 +72,47 @@ function switchToPage(current) {
         <h2 class="homework__sub-heading">2. Игра быки и коровы</h2>
         <p class="homework__sub-text" id="output_hw${current}_2ext">Нажмите, чтобы начать</p>
         <a class="homework__sub-button" id="button_hw${current}_2" onclick="f${current}p2();">Старт</a>
-        <label class="homework__sub-label">Введите число 0-9
+        <label class="homework__sub-label">Число 4-знака
              <input class="homework__sub-inout" type="number" id="input_hw${current}_2"></label>
         <a class="homework__sub-button" onclick="f${current}p2ext();">Подтвердить</a> 
          <div class="homework__sub-label"> Результат
              <div class="homework__sub-inout" id="output_hw${current}_2"></div>
          </div>
          </div>`;
+        
+         currentHtml += `<div class="homework__sub">
+         <h2 class="homework__sub-heading">3. Игра кто хочет стать миллионером</h2>
+         <a class="homework__sub-button" id="button${current}p3Start" onclick="f${current}p3Start();">Старт</a> 
+         <p class="homework__sub-text" id="output_hw${current}_3ext">Вопрос</p>
+         <div class="homework__sub-check-box">
+         <label class="homework__sub-check">
+            <input class="homework__sub-check-radio" type="radio" checked name="question" value="1">
+            <span class="question-text">Ответ</span>
+            </label>
+         <label class="homework__sub-check">
+            <input class="homework__sub-check-radio" type="radio" name="question" value="2">
+            <span class="question-text">Ответ</span>
+         </label>
+         </div>
+         <div class="homework__sub-check-box">
+         <label class="homework__sub-check">
+            <input class="homework__sub-check-radio" type="radio" name="question" value="3">
+            <span class="question-text">Ответ</span>
+        </label>
+         <label class="homework__sub-check">
+            <input class="homework__sub-check-radio" type="radio" name="question" value="4">
+            <span class="question-text">Ответ</span>
+            </label>
+         </div>
+         <a class="homework__sub-button" id="button${current}p3" onclick="f${current}p3();">Ответить</a> 
+          <div class="homework__sub-label"> Результат
+              <div class="homework__sub-inout" id="output_hw${current}_3"></div>
+          </div>
+          </div>`;
+         
+        
         activeBox.innerHTML = currentHtml;
+
     }
 }
 

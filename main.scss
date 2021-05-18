@@ -71,7 +71,8 @@ body {
             padding: 20px 0;
             text-align: center;
             width: 100%;
-            cursor:pointer;
+            cursor: pointer;
+
             &_active {
                 color: #3a3a3a;
                 background: white;
@@ -172,6 +173,21 @@ body {
             align-items: center;
             justify-content: center;
             // flex:1 1 50%;
+        }
+
+        &-check {
+            color: #494949;
+            margin: 5px 10px 5px 0;
+            flex: 0 0 50%;
+
+            &-radio {
+                color: inherit;
+            }
+
+            &-box {
+                display: flex;
+            }
+
         }
 
         &-button {

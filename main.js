@@ -105,7 +105,7 @@ function f4p2ext() { // пользователь делает ходы (кноп
     var outputDivExt = document.getElementById("output_hw4_2ext");//табло состояния игры
     var buttonStartStop = document.getElementById("button_hw4_2");
 
-    var gameResult = [0, 0]; // 1- быки, 2-коровы
+    var gameResult = [0, 0, 0]; // 1- быки, 2-коровы,2- значение хода
 
     if (currentNumber) { // проверка было ли начата игра
 
@@ -121,6 +121,7 @@ function f4p2ext() { // пользователь делает ходы (кноп
                 }
                 // console.log(currentNumber.indexOf(parseInt(item))+" "+item);
             });
+            gameResult[2] = inputNumber;
             attemps++;
             steps.push(gameResult); //запись шагов
             outputDiv.innerHTML = `Быки:${gameResult[0]} Коровы:${gameResult[1]} Попыток:${attemps}`;
@@ -134,10 +135,10 @@ function f4p2ext() { // пользователь делает ходы (кноп
                 var res = "";
                 var outputStep = +prompt(`Шагов было:${attemps}. Какой шаг хотите посмотреть? (0 или несущ. шаг выводит все шаги)`);
                if (outputStep > 0 && outputStep <= attemps) {
-                    res += `Шаг-${outputStep}: Быки:${steps[outputStep-1][0]} Коровы:${steps[outputStep-1][1]}<br>`;
+                    res += `Шаг-${outputStep}: Быки:${steps[outputStep-1][0]} Коровы:${steps[outputStep-1][1]} Ваш ход:${steps[outputStep-1][2]}<br>`;
                } else  {
                     steps.forEach(function (item, i) {
-                    res += `Шаг-${i + 1}: Быки:${item[0]} Коровы:${item[1]}<br>`;
+                    res += `Шаг-${i + 1}: Быки:${item[0]} Коровы:${item[1]} Ваш ход:${item[2]}<br>`;
                     console.log(res);
                 });
                 }
@@ -156,6 +157,110 @@ function f4p2ext() { // пользователь делает ходы (кноп
         outputDiv.innerHTML = "Запустите игру!";
     }
 }
+
+// п.3. Игра Кто хочет стать миллионером
+var question; //Вопросы
+var currentQuestion; // текущий вопрос
+// Элементы на верстке
+var buttonStartStop;
+var questionElement;
+var answerElement;
+var answerCheckElement;
+var outputDiv;
+
+
+function f4p3Start() {
+     buttonStartStop = document.getElementById("button4p3Start");
+     questionElement = document.getElementById("output_hw4_3ext");
+    answerElement = document.getElementsByClassName("question-text");
+    outputDiv = document.getElementById("output_hw4_3");
+
+    if (buttonStartStop.innerHTML == "Старт") { //запуск игры
+        question = [
+            {
+                ask: "У кого длиннее хвост",
+                answer: ["Лиса", "Заяц", "Волк", "Медведь"],
+                trueAnswer: 0,
+                prize:1000
+            },
+            {
+                ask: "У кого длиннее уши",
+                answer: ["Лиса1", "Заяц1", "Волк1", "Медведь1"],
+                trueAnswer: 1,
+                prize:10000
+            },
+            {
+                ask: "Кто санитар леса",
+                answer: ["Лиса2", "Заяц2", "Волк2", "Медведь2"],
+                trueAnswer: 2,
+                prize:100000
+            }
+        ];
+        buttonStartStop.innerHTML = "Стоп";
+        currentQuestion = 0; // текущий вопрос
+        writeQuestion(currentQuestion);
+        outputDiv.innerHTML = "";
+ 
+    } else { // остановка игры
+        question = [];
+        buttonStartStop.innerHTML = "Старт";
+        //запись информации о завершении игры на верстку
+        currentQuestion = false;
+        writeQuestion(currentQuestion);
+    }
+
+}
+
+function writeQuestion(numb) { //записк текущего вопроса и вариантов ответа на верстку
+    if (numb!==false){
+        questionElement.innerHTML = question[numb].ask;
+        for (var i in answerElement) {
+            answerElement[i].innerHTML = question[numb].answer[i];
+        }
+    } else {
+        questionElement.innerHTML = "Игра закончена!";
+        for (var i in answerElement) {
+            answerElement[i].innerHTML ="";
+        }
+    }
+}
+
+function f4p3() {
+    buttonStartStop = document.getElementById("button4p3Start");
+    questionElement = document.getElementById("output_hw4_3ext");
+    answerElement = document.getElementsByClassName("question-text");
+    answerCheckElement = document.getElementsByName("question");
+    outputDiv = document.getElementById("output_hw4_3");
+
+    if (buttonStartStop.innerHTML == "Стоп") { //Если игра  запущена
+        
+        var userAnswerNumber; //Для получения ответа пользователя с верстки
+        for (var i = 0; i < answerCheckElement.length;i++) {
+            if (answerCheckElement[i].checked) {
+                userAnswerNumber = i;
+                break;
+            }
+        }
+        // console.log(userAnswerNumber);
+        // console.log(question[currentQuestion].trueAnswer);
+        if (userAnswerNumber != question[currentQuestion].trueAnswer) { //Если  ответ пользователя не совпадает с правильным ответом из БД,  игра прекращается
+            outputDiv.innerHTML = "Неверный ответ!<br>"+"Вы выиграли: 0"; 
+            f4p3Start();                                                              
+            return;
+        } 
+        outputDiv.innerHTML = "Правильно!<br>"+"Ваш выигрыш: "+question[currentQuestion].prize; // выдача информации о текущем выигрыше
+        
+        if (currentQuestion<question.length-1){ // если текущий вопрос не последний - переход к следующему вопросу, иначе - игра завершается
+            writeQuestion(++currentQuestion);   
+        } else {
+            f4p3Start();
+        }
+    } else {
+        outputDiv.innerHTML = "Запустите игру";
+    }
+}
+
+
 
 // Домашння работа №3
 // *************************

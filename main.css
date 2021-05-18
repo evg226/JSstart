@@ -217,6 +217,17 @@ body {
   align-items: center;
   justify-content: center;
 }
+.homework__sub-check {
+  color: #494949;
+  margin: 5px 10px 5px 0;
+  width: 50%;
+}
+.homework__sub-check-radio {
+  color: inherit;
+}
+.homework__sub-check-box {
+  display: flex;
+}
 .homework__sub-button {
   border: 1px solid #8f8f8f;
   padding: 8px 0;
