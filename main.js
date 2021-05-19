@@ -1,3 +1,370 @@
+// Домашння работа №4
+// *************************
+
+// п.1
+// преобразование числа в объект
+function f4p1() {
+    var inputNumber = document.getElementById("input_hw4_1").value;
+    var outputDiv = document.getElementById("output_hw4_1");
+
+    var numberObj = DoNumberObj(inputNumber);
+    console.log(numberObj);
+    outputDiv.innerHTML = numberObj;
+
+    function DoNumberObj(currentNumber) {
+        if ((currentNumber > 0) && (currentNumber < 999)) {// Код по условиям задачи
+            var resultObj = {};
+            resultObj["Единицы"] = currentNumber % 10;
+            currentNumber = (currentNumber - resultObj["Единицы"]) / 10;
+            resultObj["Десятки"] = currentNumber % 10;
+            currentNumber = (currentNumber - resultObj["Десятки"]) / 10;
+            resultObj["Сотни"] = currentNumber % 10;
+            resultObj.toString = function () {
+                return `Object{ Сотни:${this["Сотни"]}, Десятки:${this["Десятки"]}, Единицы:${this["Единицы"]} }`;
+            }
+        }  else { // расширение кода для любого положительного целого значения (по 2 способу решения)
+            resultObj = {};
+            var toString = "Object{<br>";
+            var digit = [ //Массив для названий стойств объекта
+                "Единицы", "Десятки", "Сотни", "Тысячи", "Десятки тысяч", "Сотни тысяч", "Миллионы", "Десятки миллионов", "Сотни миллионов", "Миллиарды"
+            ];
+            // console.log(currentNumber.length);
+            
+            for (var i = currentNumber.length - 1; i >= 0; i--){
+                
+                var prop = typeof(digit[i]) == "undefined" ? "1"+doString('0',i+1) : digit[i]; //Формируем имя стойства 
+                var val = currentNumber[currentNumber.length - i - 1];//значение свойства
+                // console.log(i + ` ${prop}: ${val}`);
+                resultObj[prop] = val;
+                toString += `${prop}: ${resultObj[prop]},<br>`;
+            }
+            toString += " }";
+            resultObj.toString = function () { return toString; };
+        }
+
+        return resultObj;
+    }
+
+    function doString( str, len) {
+        var result = "";
+        for (var i = 1; i < len; i++) {
+            result += str;
+        }
+        return result;
+    }
+
+}
+
+// п.2
+// Игра Быки и Коровы
+var currentNumber = false;//для загадываемого числа
+var attemps = 0;//попытки
+var steps = [];//ходы игрока;
+
+function f4p2() { //пользователь начинает игру, ПК Загадывает число и помещает его в currentNumber
+
+    var outputDiv = document.getElementById("output_hw4_2");
+    var outputDivExt = document.getElementById("output_hw4_2ext");
+    var buttonStartStop = document.getElementById("button_hw4_2");
+
+    currentNumber = generateNumber();
+    outputDiv.innerHTML = "";
+
+    attemps = 0;
+    steps = [];
+
+    if (buttonStartStop.innerHTML == "Стоп") { //для принудильного завершения игры
+        buttonStartStop.innerHTML = "Старт";
+        outputDivExt.innerHTML = "Игра завершена пользователем!";
+        currentNumber = false;
+        // console.log(currentNumber == false);
+        return;
+    }
+    console.log(currentNumber);
+    outputDivExt.innerHTML = "Игра начата! Сгенерировано число: " + currentNumber.join(""); // число отображается в отладочном режиме
+    buttonStartStop.innerHTML = "Стоп";
+
+
+    function generateNumber() { //для гегерирования 4 значного числа, помещается в массив
+        const min = 1, max = 9;
+        var number = [];
+        for (i = 0; i < 4; i++) {
+            var part = Math.round(Math.random() * (max - min) + min);
+            while (number.indexOf(part) != -1) {
+                part = Math.round(Math.random() * (max - min) + min);
+            }
+            number[i] = part;
+        }
+        return number;
+    }
+}
+
+function f4p2ext() { // пользователь делает ходы (кнопка Подтвердить в верстке)
+    var inputNumber = parseInt(document.getElementById("input_hw4_2").value); // число введенное пользователем
+    var outputDiv = document.getElementById("output_hw4_2");// для вывода результатов игры
+    var outputDivExt = document.getElementById("output_hw4_2ext");//табло состояния игры
+    var buttonStartStop = document.getElementById("button_hw4_2");
+
+    var gameResult = [0, 0, 0]; // 1- быки, 2-коровы,2- значение хода
+
+    if (currentNumber) { // проверка было ли начата игра
+
+        if (inputNumber > 1000 && inputNumber < 9999) {//проверка числа введеого
+            var inputArr = String(inputNumber).split("");
+
+            inputArr.forEach(function (item, i) {
+                if (parseInt(item) == currentNumber[i]) {//счетчик быков
+                    gameResult[0]++;
+                }
+                else if (currentNumber.indexOf(parseInt(item))!=-1){//счетчик коров
+                    gameResult[1]++;
+                }
+                // console.log(currentNumber.indexOf(parseInt(item))+" "+item);
+            });
+            gameResult[2] = inputNumber;
+            attemps++;
+            steps.push(gameResult); //запись шагов
+            outputDiv.innerHTML = `Быки:${gameResult[0]} Коровы:${gameResult[1]} Попыток:${attemps}`;
+
+            if (gameResult[0] == 4) {
+                buttonStartStop.innerHTML = "Старт";
+                outputDivExt.innerHTML = "Игра завершена!";
+                currentNumber = false;
+                
+                // Вывод шагов (или выбранного шага)
+                var res = "";
+                var outputStep = +prompt(`Шагов было:${attemps}. Какой шаг хотите посмотреть? (0 или несущ. шаг выводит все шаги)`);
+               if (outputStep > 0 && outputStep <= attemps) {
+                    res += `Шаг-${outputStep}: Быки:${steps[outputStep-1][0]} Коровы:${steps[outputStep-1][1]} Ваш ход:${steps[outputStep-1][2]}<br>`;
+               } else  {
+                    steps.forEach(function (item, i) {
+                    res += `Шаг-${i + 1}: Быки:${item[0]} Коровы:${item[1]} Ваш ход:${item[2]}<br>`;
+                    console.log(res);
+                });
+                }
+            
+                outputDiv.innerHTML = res;
+                
+                return;
+
+            }
+            
+
+        } else {
+            outputDiv.innerHTML = "Введите четырехзначное число";
+        }
+    } else {
+        outputDiv.innerHTML = "Запустите игру!";
+    }
+}
+
+// п.3. Игра Кто хочет стать миллионером
+var question; //Вопросы
+var currentQuestion; // текущий вопрос
+// Элементы на верстке
+var buttonStartStop;
+var questionElement;
+var answerElement;
+var answerCheckElement;
+var outputDiv;
+
+
+function f4p3Start() {
+     buttonStartStop = document.getElementById("button4p3Start");
+     questionElement = document.getElementById("output_hw4_3ext");
+    answerElement = document.getElementsByClassName("question-text");
+    outputDiv = document.getElementById("output_hw4_3");
+
+    if (buttonStartStop.innerHTML == "Старт") { //запуск игры
+        question = [
+            {
+                ask: "У кого длиннее хвост",
+                answer: ["Лиса", "Заяц", "Волк", "Медведь"],
+                trueAnswer: 0,
+                prize:1000
+            },
+            {
+                ask: "У кого длиннее уши",
+                answer: ["Лиса1", "Заяц1", "Волк1", "Медведь1"],
+                trueAnswer: 1,
+                prize:10000
+            },
+            {
+                ask: "Кто санитар леса",
+                answer: ["Лиса2", "Заяц2", "Волк2", "Медведь2"],
+                trueAnswer: 2,
+                prize:100000
+            }
+        ];
+        buttonStartStop.innerHTML = "Стоп";
+        currentQuestion = 0; // текущий вопрос
+        writeQuestion(currentQuestion);
+        outputDiv.innerHTML = "";
+ 
+    } else { // остановка игры
+        question = [];
+        buttonStartStop.innerHTML = "Старт";
+        //запись информации о завершении игры на верстку
+        currentQuestion = false;
+        writeQuestion(currentQuestion);
+    }
+
+}
+
+function writeQuestion(numb) { //записк текущего вопроса и вариантов ответа на верстку
+    if (numb!==false){
+        questionElement.innerHTML = question[numb].ask;
+        for (var i in answerElement) {
+            answerElement[i].innerHTML = question[numb].answer[i];
+        }
+    } else {
+        questionElement.innerHTML = "Игра закончена!";
+        for (var i in answerElement) {
+            answerElement[i].innerHTML ="";
+        }
+    }
+}
+
+function f4p3() {
+    buttonStartStop = document.getElementById("button4p3Start");
+    questionElement = document.getElementById("output_hw4_3ext");
+    answerElement = document.getElementsByClassName("question-text");
+    answerCheckElement = document.getElementsByName("question");
+    outputDiv = document.getElementById("output_hw4_3");
+
+    if (buttonStartStop.innerHTML == "Стоп") { //Если игра  запущена
+        
+        var userAnswerNumber; //Для получения ответа пользователя с верстки
+        for (var i = 0; i < answerCheckElement.length;i++) {
+            if (answerCheckElement[i].checked) {
+                userAnswerNumber = i;
+                break;
+            }
+        }
+        // console.log(userAnswerNumber);
+        // console.log(question[currentQuestion].trueAnswer);
+        if (userAnswerNumber != question[currentQuestion].trueAnswer) { //Если  ответ пользователя не совпадает с правильным ответом из БД,  игра прекращается
+            outputDiv.innerHTML = "Неверный ответ!<br>"+"Вы выиграли: 0"; 
+            f4p3Start();                                                              
+            return;
+        } 
+        outputDiv.innerHTML = "Правильно!<br>"+"Ваш выигрыш: "+question[currentQuestion].prize; // выдача информации о текущем выигрыше
+        
+        if (currentQuestion<question.length-1){ // если текущий вопрос не последний - переход к следующему вопросу, иначе - игра завершается
+            writeQuestion(++currentQuestion);   
+        } else {
+            f4p3Start();
+        }
+    } else {
+        outputDiv.innerHTML = "Запустите игру";
+    }
+}
+
+
+
+// Домашння работа №3
+// *************************
+
+// п.1
+// Вывод простых чисел от 0 до 100
+function simpleNumbers() {
+
+    var resultSumpleDiv = document.getElementById("resultSimpleId");
+    var simpleMax = +document.getElementById("simpleMax").value;
+
+    var result = [];
+    var index = 2;
+    while (index < simpleMax) {
+        if (isSimple(index)) {
+            result.push(index);
+        }
+        index++;
+    }
+    console.log(result);
+    resultSumpleDiv.innerHTML = result.join(" ");
+
+    function isSimple(number) {
+        var index = 2;
+        while (index <= (number / 2)) {
+            if ((number % index) == 0) {
+                return false;
+            }
+            index++;
+        }
+        return true;
+    }
+}
+
+// п.2-3
+// Корзина Интернет магазина
+function costCart() {
+    var cart = [
+        { nameItem: "Куртка", price: 130, quantity: 2 },
+        { nameItem: "Брюки", price: 90, quantity: 3 },
+        { nameItem: "Галстук", price: 30, quantity: 2 }
+    ]
+    var resultISDiv = document.getElementById("resultIS");
+    resultISDiv.innerHTML = countBasketPrice(cart);
+
+    function countBasketPrice(cart) {
+        // var result=0;
+        // for (var index = 0; index < cart.length; index++){
+        //     console.log(cart[index].price);
+        //     result += cart[index].price*cart[index].quantity;
+        // }
+        // console.log(result);
+
+        // console.log("_________");
+        // var result=0;
+        // for (var item of cart){
+        //     console.log(item.price);
+        //     result += item.price*item.quantity;
+        // }
+        // console.log(result);
+
+        // console.log("_________");
+        // var result=0;
+        // for (var index in cart){
+        //     console.log(cart[index].price);
+        //     result += cart[index].price*cart[index].quantity;
+        // }
+        // console.log(result);
+
+        // console.log("_________");
+        var result = 0;
+        cart.forEach(function (item, index) {
+            result += item.price * item.quantity; //К стоимости корзины прибавляется произведение цены текущего товра к стоимости
+        });
+        // console.log("result="+result);
+        return result;
+    }
+}
+
+// п.4
+// Вывод чисел от 0 до 9
+
+function forNotBody() {
+    forId = document.getElementById("forId");
+    var index = 0, result = [];
+    for (; ;) {
+        result.push(index++);
+        if (index > 9) {
+            break;
+        }
+    }
+    forId.innerHTML = result.join(" ");
+}
+
+// п.5
+// Нарисовать пирамиду с помощью console.log
+
+function pyramid() {
+    var result = "";
+    for (index = 0; index < 20; index++) {
+        console.log(result += "X");
+    }
+}
+
 // Домашння работа №2
 // *************************
 
@@ -224,7 +591,6 @@ function powerFunc() {
 }
 
 
-
 // Домашння работа №1
 // *************************
 
@@ -295,4 +661,15 @@ buttonHamb.onclick = function () {
     var menu = document.getElementById("mainMenu");
     menu.classList.toggle("mainMenuOpen");
     buttonHamb.classList.toggle("open");
+    menu.onclick = function () {
+        menu.classList.toggle("mainMenuOpen");
+        buttonHamb.classList.toggle("open");
+    }
 }
+
+
+
+
+
+
+

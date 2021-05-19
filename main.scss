@@ -12,9 +12,7 @@ html {
 }
 
 body {
-    // font-size: 16px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-
 }
 
 .header {
@@ -22,23 +20,21 @@ body {
 
     &__top {
         display: flex;
-
-        min-height: 90px;
         align-items: center;
+        min-height: 90px;
         border-bottom: 1px solid #cfcccc;
     }
 
     &__logo {
+        color: #3a3a3a;
         font-size: 2rem;
         font-weight: 700;
         text-transform: uppercase;
-        color: #3a3a3a;
         line-height: 3rem;
 
     }
 
     &__hamburger {
-        // border: 1px solid #3a3a3a;
         display: none;
         cursor: pointer;
 
@@ -64,26 +60,29 @@ body {
 
         &-link {
             display: inline-block;
-            color: #575757;
-            text-transform: uppercase;
-            font-size: 1.2rem;
-            font-weight: 600;
+            width: 100%;
             padding: 20px 0;
             text-align: center;
-            width: 100%;
+            text-transform: uppercase;
+            color: #575757;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+
+            transition: background 0.5s ease, color 0.3s ease, border-top-left-radius 0.5s ease, border-top-right-radius 0.5s ease;
 
             &_active {
-                color: #3a3a3a;
-                background: white;
                 border-top-left-radius: 10px;
                 border-top-right-radius: 10px;
+                color: #3a3a3a;
+                background: white;
             }
 
             &:hover {
-                color: #ffffff;
-                background: #8f8f8f;
                 border-top-left-radius: 10px;
                 border-top-right-radius: 10px;
+                color: #ffffff;
+                background: #8f8f8f;
             }
         }
 
@@ -92,15 +91,14 @@ body {
 
 .breadcrumb {
 
-    // background:  #dbdbdb;
     &__container {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin: 1rem auto 3rem;
         font-size: 1.2rem;
         color: #494949;
         line-height: 1.4rem;
-        margin: 1rem auto 3rem;
     }
 
     &__link {
@@ -126,15 +124,15 @@ body {
     }
 
     &__sub {
+        flex: 1 0 31%;
         display: flex;
         flex-direction: column;
-        box-shadow: 0 0 10px #cfcccc;
-        //    width: 30%;
-        flex: 1 0 31%;
         min-height: 250px;
-        // justify-content: space-evenly;
         padding: 15px;
         margin: 5px;
+        box-shadow: 0 0 10px #cfcccc;
+
+        transition: box-shadow 0.5s ease;
 
         &:hover {
             box-shadow: 0 0 20px #363535;
@@ -145,7 +143,6 @@ body {
             font-size: 1.1rem;
             font-weight: 600;
             line-height: 1.4rem;
-            // margin-bottom:15px;
             text-align: center;
             border-bottom: 1px solid #dbdbdb;
             padding-bottom: 10px;
@@ -171,19 +168,36 @@ body {
             display: flex;
             align-items: center;
             justify-content: center;
-            // flex:1 1 50%;
+        }
+
+        &-check {
+            color: #494949;
+            margin: 5px 10px 5px 0;
+            // margin-top: 5px;
+            flex: 0 0 50%;
+
+            &-radio {
+                color: inherit;
+            }
+
+            &-box {
+                display: flex;
+            }
+
         }
 
         &-button {
             border: 1px solid #8f8f8f;
-            padding: 8px 0;
             min-width: 50%;
+            margin: 5px auto;
+            padding: 8px 0;
             text-align: center;
             background: #dbdbdb;
             color: #575757;
             font-size: 1rem;
-            margin: 5px auto;
+            cursor: pointer;
 
+            transition: background 0.5s ease, color 0.3s ease;
 
             &:hover {
                 color: #ffffff;
@@ -206,14 +220,14 @@ body {
             line-height: 1.1rem;
             color: #494949;
             margin: 10px 0;
-
         }
 
     }
 }
 
 #i1_5,
-#i2_1 {
+#i2_1,
+#i3_2 {
     flex: 1 0 64.5%;
 
 }
@@ -223,7 +237,6 @@ body {
     min-height: 30px;
     padding: 8px;
     line-height: 1.2rem;
-
 }
 
 .footer {
@@ -280,6 +293,7 @@ body {
             &.open {
                 // background: #ffffff;
 
+
                 & .header__hamburger-line-2 {
                     border-color: #dbdbdb;
                 }
@@ -300,6 +314,7 @@ body {
         &__menu {
 
             display: none;
+            opacity: 0;
 
             &-link {
                 padding: 10px 20px;
@@ -324,6 +339,9 @@ body {
 
             &.mainMenuOpen {
                 display: block;
+                opacity: 1;
+
+
             }
         }
 
