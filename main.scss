@@ -112,6 +112,7 @@ body {
     &__box {
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
     }
 
     &__heading {
@@ -251,6 +252,39 @@ body {
     }
 }
 
+
+// Для задания №5 "Шахматная доска"
+.chess {
+    &__box {
+        display: grid;
+        grid-template-columns: 2rem repeat(8, 6rem) 2rem;
+        grid-template-rows: 2rem repeat(8, 6rem) 2rem;
+        grid-gap: 1px;
+        margin: 30px 0;
+    }
+
+    &__cell {
+        border: 1px solid #575757;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #494949;
+        font-size: 1rem;
+
+        &_black {
+            background: #8f8f8f;
+            color: #ffffff;
+        }
+
+        &_rotated {
+            transform: rotate(180deg);
+
+        }
+    }
+}
+
+
+
 @media screen and (max-width:900px) {
     html {
         font-size: 14px;
@@ -267,6 +301,16 @@ body {
     .homework {
         &__sub {
             flex: 1 0 48%;
+        }
+    }
+
+    .chess {
+        &__box {
+            display: grid;
+            width: 100%;
+            grid-template-columns: 1.2rem repeat(8, 4rem) 1.2rem;
+            grid-template-rows: 1.2rem repeat(8, 4rem) 1.2rem;
+            grid-gap: 1px;
         }
     }
 }
@@ -358,5 +402,14 @@ body {
         }
     }
 
+    .chess {
+        &__box {
+            display: grid;
+            width: 100%;
+            grid-template-columns: 1.2rem repeat(8, 3rem) 1.2rem;
+            grid-template-rows: 1.2rem repeat(8, 3rem) 1.2rem;
+            grid-gap: 1px;
+        }
+    }
 
 }

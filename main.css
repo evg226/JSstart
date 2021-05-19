@@ -168,6 +168,7 @@ body {
 .homework__box {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 .homework__heading {
   text-transform: uppercase;
@@ -286,6 +287,29 @@ body {
   line-height: 1.5rem;
 }
 
+.chess__box {
+  display: grid;
+  grid-template-columns: 2rem repeat(8, 6rem) 2rem;
+  grid-template-rows: 2rem repeat(8, 6rem) 2rem;
+  grid-gap: 1px;
+  margin: 30px 0;
+}
+.chess__cell {
+  border: 1px solid #575757;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #494949;
+  font-size: 1rem;
+}
+.chess__cell_black {
+  background: #8f8f8f;
+  color: #ffffff;
+}
+.chess__cell_rotated {
+  transform: rotate(180deg);
+}
+
 @media screen and (max-width: 900px) {
   html {
     font-size: 14px;
@@ -298,6 +322,14 @@ body {
 
   .homework__sub {
     flex: 1 0 48%;
+  }
+
+  .chess__box {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1.2rem repeat(8, 4rem) 1.2rem;
+    grid-template-rows: 1.2rem repeat(8, 4rem) 1.2rem;
+    grid-gap: 1px;
   }
 }
 @media screen and (max-width: 540px) {
@@ -349,5 +381,13 @@ body {
 
   .homework__sub {
     flex: 1 0 90%;
+  }
+
+  .chess__box {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1.2rem repeat(8, 3rem) 1.2rem;
+    grid-template-rows: 1.2rem repeat(8, 3rem) 1.2rem;
+    grid-gap: 1px;
   }
 }/*# sourceMappingURL=main.css.map */

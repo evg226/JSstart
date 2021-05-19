@@ -1,5 +1,5 @@
 // Загрузка меню
-var currentHW = "4"; //Текущий урок
+var currentHW = "5"; //Текущий урок
 
 var mainMenuItems = document.getElementById("mainMenuItems"); //список меню
 var mainMenuLi = []; // пункты меню
@@ -7,9 +7,13 @@ var mainMenuLink = []; //ссылки пунтов меню
 var breadcrumbActiveHW; // индикатор текущего урока
 var headerHW = document.getElementById("headerHW"); //Заголовок страницы
 var activeHW = document.getElementById("activeHW"); //изменяемый конкент 
+var breadcrumbActiveJS; //Комментарий к текущему уроку
+
+var buttons = []; //кнопки для страницы;
 
 breadcrumbActiveHW = document.getElementById("breadcrumbActiveHW");
 breadcrumbActiveHW.innerText = "HW" + currentHW;
+breadcrumbActiveJS = document.getElementById("breadcrumbActiveJS");
 headerHW.innerText = "Домашняя работа №" + currentHW;
 activeHW.innerHTML = "";
 loadHW(currentHW);
@@ -39,28 +43,36 @@ for (var i = 1; i <= 8; i++) {
     }
 }
 
+
+
+
 function loadHW(indexHW) {
-    //создания тела уроков 1-4 использовалась верстка, для 5-8 будет использоваться DOM
-    switch (indexHW) {
+    //для создания тела уроков 1-4 использовалась верстка, для 5-8 будет использоваться DOM
+  
+    if ((indexHW == "1") || (indexHW == "2")|| (indexHW == "3")|| (indexHW == "4")) {
+        activeHW.innerHTML = getHW1234HTML(indexHW);
+    } else {
+        breadcrumbActiveJS.innerHTML = `JS-код находится в файле hw${indexHW}.js`;
+        // var currentScript = document.createElement("script");
+        // currentScript.src = `hw${indexHW}.js`;
+        // document.body.append(currentScript);
+        if (indexHW == "5") {
+            buttons[0] = document.createElement("button");
+            buttons[0].classList.add("homework__sub-button");
+            buttons[0].onclick = makeChessboard;
+            buttons[0].innerHTML = "1. Cформировать доску";
+            activeHW.insertAdjacentElement("afterbegin", buttons[0]);
+
+            
+        }
         
-        case "1" :
-            activeHW.innerHTML = getHW1234HTML(indexHW);
-            break;
-        case "2" :
-            activeHW.innerHTML = getHW1234HTML(indexHW);
-            break;
-        case "3" :
-            activeHW.innerHTML = getHW1234HTML(indexHW);
-            break;
-        case "4" :
-            activeHW.innerHTML = getHW1234HTML(indexHW);
-            break;
 
     }
 
-    function getHW1234HTML(current) {
+    function getHW1234HTML(current) { //получение кода для тела уроков 1-4
         
         var currentHtml;
+        breadcrumbActiveJS.innerHTML = "JS-код находится в файле main.js";
         if (current == "3") {
             currentHtml = `
             <div class="homework__box">
