@@ -51,20 +51,20 @@ function loadHW(indexHW) {
         breadcrumbActiveJS.innerHTML = `JS-код находится в файле hw${indexHW}.js`;
 
         //Формируем задания к уроку 5
-        if (indexHW == "5") {
-            //Создаем кнопку для формирования доски к п.1
+        // if (indexHW == "5") {
+        //     //Создаем кнопку для формирования доски к п.1
             
-            // buttons[0] = document.createElement("button");
-            // buttons[0].classList.add("homework__sub-button");
-            // buttons[0].classList.add("homework__sub-button-5");
-            // buttons[0].onclick = makeChessboard;
-            // buttons[0].innerHTML = "1. Cформировать доску";
-            // activeHW.insertAdjacentElement("afterbegin", buttons[0]);
-            var mainButton = makeButton(makeChessboard, "1. Cформировать доску");
-            mainButton.setAttribute("id", "mainButton");
-            activeHW.insertAdjacentElement("afterbegin", mainButton);
+        //     // buttons[0] = document.createElement("button");
+        //     // buttons[0].classList.add("homework__sub-button");
+        //     // buttons[0].classList.add("homework__sub-button-5");
+        //     // buttons[0].onclick = makeChessboard;
+        //     // buttons[0].innerHTML = "1. Cформировать доску";
+        //     // activeHW.insertAdjacentElement("afterbegin", buttons[0]);
+        //     var mainButton = makeButton(makeChessboard, "1. Cформировать доску");
+        //     mainButton.setAttribute("id", "mainButton");
+        //     activeHW.insertAdjacentElement("afterbegin", mainButton);
             
-        }
+        // }
 
 
     function getHW1234HTML(current) { //получение кода для тела уроков 1-4
