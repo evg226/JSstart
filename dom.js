@@ -42,8 +42,6 @@ for (var i = 1; i <= 8; i++) {
 }
 
 
-
-
 function loadHW(indexHW) {
     //для создания тела уроков 1-4 использовалась верстка, для 5-8 будет использоваться DOM
   
@@ -51,6 +49,7 @@ function loadHW(indexHW) {
         activeHW.innerHTML = getHW1234HTML(indexHW);
     } else {
         breadcrumbActiveJS.innerHTML = `JS-код находится в файле hw${indexHW}.js`;
+
         //Формируем задания к уроку 5
         if (indexHW == "5") {
             //Создаем кнопку для формирования доски к п.1
@@ -66,7 +65,7 @@ function loadHW(indexHW) {
             activeHW.insertAdjacentElement("afterbegin", mainButton);
             
         }
-    }
+
 
     function getHW1234HTML(current) { //получение кода для тела уроков 1-4
         
