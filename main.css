@@ -77,7 +77,7 @@ h6 {
 }
 
 .container {
-  min-width: 320px;
+  min-width: 380px;
   max-width: 1040px;
   margin: 0 auto;
   padding: 0 10px;
@@ -247,6 +247,11 @@ body {
   color: #ffffff;
   background: #494949;
 }
+.homework__sub-button-5 {
+  min-width: 25%;
+  max-width: 30%;
+  margin: 5px;
+}
 .homework__sub-text {
   font-size: 1rem;
   color: #494949;
@@ -301,10 +306,14 @@ body {
   align-items: center;
   color: #494949;
   font-size: 1rem;
+  line-height: 1.3rem;
+  text-align: center;
+}
+.chess__cell_figure-font {
+  font-size: 5rem;
 }
 .chess__cell_black {
-  background: #8f8f8f;
-  color: #ffffff;
+  background: #b9b9b9;
 }
 .chess__cell_rotated {
   transform: rotate(180deg);
@@ -325,11 +334,11 @@ body {
   }
 
   .chess__box {
-    display: grid;
-    width: 100%;
     grid-template-columns: 1.2rem repeat(8, 4rem) 1.2rem;
     grid-template-rows: 1.2rem repeat(8, 4rem) 1.2rem;
-    grid-gap: 1px;
+  }
+  .chess__cell_figure-font {
+    font-size: 4rem;
   }
 }
 @media screen and (max-width: 540px) {
@@ -382,12 +391,19 @@ body {
   .homework__sub {
     flex: 1 0 90%;
   }
+  .homework__sub-button-5 {
+    font-size: 0.8rem;
+  }
 
   .chess__box {
-    display: grid;
-    width: 100%;
     grid-template-columns: 1.2rem repeat(8, 3rem) 1.2rem;
     grid-template-rows: 1.2rem repeat(8, 3rem) 1.2rem;
-    grid-gap: 1px;
+  }
+  .chess__cell {
+    font-size: 0.8rem;
+    line-height: 1rem;
+  }
+  .chess__cell_figure-font {
+    font-size: 3rem;
   }
 }/*# sourceMappingURL=main.css.map */

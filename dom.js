@@ -9,8 +9,6 @@ var headerHW = document.getElementById("headerHW"); //Заголовок стр�
 var activeHW = document.getElementById("activeHW"); //изменяемый конкент 
 var breadcrumbActiveJS; //Комментарий к текущему уроку
 
-var buttons = []; //кнопки для страницы;
-
 breadcrumbActiveHW = document.getElementById("breadcrumbActiveHW");
 breadcrumbActiveHW.innerText = "HW" + currentHW;
 breadcrumbActiveJS = document.getElementById("breadcrumbActiveJS");
@@ -53,20 +51,21 @@ function loadHW(indexHW) {
         activeHW.innerHTML = getHW1234HTML(indexHW);
     } else {
         breadcrumbActiveJS.innerHTML = `JS-код находится в файле hw${indexHW}.js`;
-        // var currentScript = document.createElement("script");
-        // currentScript.src = `hw${indexHW}.js`;
-        // document.body.append(currentScript);
+        //Формируем задания к уроку 5
         if (indexHW == "5") {
-            buttons[0] = document.createElement("button");
-            buttons[0].classList.add("homework__sub-button");
-            buttons[0].onclick = makeChessboard;
-            buttons[0].innerHTML = "1. Cформировать доску";
-            activeHW.insertAdjacentElement("afterbegin", buttons[0]);
-
+            //Создаем кнопку для формирования доски к п.1
+            
+            // buttons[0] = document.createElement("button");
+            // buttons[0].classList.add("homework__sub-button");
+            // buttons[0].classList.add("homework__sub-button-5");
+            // buttons[0].onclick = makeChessboard;
+            // buttons[0].innerHTML = "1. Cформировать доску";
+            // activeHW.insertAdjacentElement("afterbegin", buttons[0]);
+            var mainButton = makeButton(makeChessboard, "1. Cформировать доску");
+            mainButton.setAttribute("id", "mainButton");
+            activeHW.insertAdjacentElement("afterbegin", mainButton);
             
         }
-        
-
     }
 
     function getHW1234HTML(current) { //получение кода для тела уроков 1-4
