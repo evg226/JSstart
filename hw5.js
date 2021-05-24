@@ -56,14 +56,6 @@ function makeChessboard() {
     activeHW.insertBefore(makeButton(fillFigureChess, "3. Заполнить фугурами"), activeHW.children[2]);
 }
 
-function makeButton(func,innerHTML) {
-    var button = document.createElement("button");
-    button.classList.add("homework__sub-button");
-    button.classList.add("homework__sub-button-5");
-    button.onclick = func;
-    button.innerHTML = innerHTML;
-    return button;
-}
 
 // п.2.Заполнение шахматной доски буквами
 function fillLettersChess() {

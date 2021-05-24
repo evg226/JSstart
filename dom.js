@@ -1,5 +1,5 @@
 // Загрузка меню
-var currentHW = "5"; //Текущий урок
+var currentHW = "6"; //Текущий урок
 
 var mainMenuItems = document.getElementById("mainMenuItems"); //список меню
 var mainMenuLi = []; // пункты меню
@@ -41,6 +41,14 @@ for (var i = 1; i <= 8; i++) {
     }
 }
 
+function makeButton(func,innerHTML) {
+    var button = document.createElement("button");
+    button.classList.add("homework__sub-button");
+    button.classList.add("homework__sub-button-5");
+    button.onclick = func;
+    button.innerHTML = innerHTML;
+    return button;
+}
 
 function loadHW(indexHW) {
     //для создания тела уроков 1-4 использовалась верстка, для 5-8 будет использоваться DOM
@@ -52,14 +60,24 @@ function loadHW(indexHW) {
 
         //Формируем задания к уроку 5
         if (indexHW == "5") {
-          
+            
             var mainButton = makeButton(makeChessboard, "1. Cформировать доску");
             mainButton.setAttribute("id", "mainButton");
             activeHW.insertAdjacentElement("afterbegin", mainButton);
             
         }
 
+         //Формируем задания к уроку 6
+         if (indexHW == "6") {
+          
+             makeGallery();
+            
+        }
+
     }
+
+
+    
     function getHW1234HTML(current) { //получение кода для тела уроков 1-4
         
         var currentHtml;
