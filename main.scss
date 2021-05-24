@@ -291,8 +291,13 @@ body {
 
         &_rotated {
             transform: rotate(180deg);
-
         }
+
+        &_caption {
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
     }
 }
 

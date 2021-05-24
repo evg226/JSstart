@@ -318,6 +318,10 @@ body {
 .chess__cell_rotated {
   transform: rotate(180deg);
 }
+.chess__cell_caption {
+  text-transform: uppercase;
+  font-weight: 700;
+}
 
 @media screen and (max-width: 900px) {
   html {

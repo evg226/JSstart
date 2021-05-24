@@ -4,19 +4,22 @@
 
 function makeChessboard() {
     
+    
     var chessBox; //блок для доски 
     var chessCell; // блок для ячейки доски
     chessBox = document.createElement("div");;
     chessBox.classList.add("chess__box");
     activeHW.insertAdjacentElement("beforeend", chessBox);//размещаем доску на странице
-    var column = "*hgfedcba*";//массив с названиями столбцов
+    var column = "*abcdefgh*";//массив с названиями столбцов
     for (var j = 0; j < 10; j++) { //j-строки
         for (var i = 0; i < 10; i++) {// i-столбцы
             chessCell = document.createElement("div");
             chessCell.classList.add("chess__cell");
             if (i == 0 || i == 9) {
-                chessCell.innerText = (j == 0 || j == 9) ? "" : j; //размещаем номера строк в крайние стоблцы 
+                chessCell.classList.add("chess__cell_caption");
+                chessCell.innerText = (j == 0 || j == 9) ? "" : 9-j; //размещаем номера строк в крайние стоблцы 
             } else if (j == 0 || j == 9) { //размещаем имена столбцов в крайние строки
+                chessCell.classList.add("chess__cell_caption");
                 chessCell.innerText = column[i]; //имена берем из массива строк
             } else { // размещаем оставшиеся ячейки (столбцы и строки которых не являются крайними)
                 if (j % 2 == 0) { //четные строки j и нечетные столбцы i - делаем черными
