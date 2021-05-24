@@ -1,7 +1,7 @@
 @import "my_reset.scss";
 
 .container {
-    min-width: 320px;
+    min-width: 380px;
     max-width: 1040px;
     margin: 0 auto;
     padding: 0 10px;
@@ -112,6 +112,7 @@ body {
     &__box {
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
     }
 
     &__heading {
@@ -203,6 +204,13 @@ body {
                 color: #ffffff;
                 background: #494949;
             }
+
+            &-5 {
+                min-width: 25%;
+                max-width: 30%;
+                margin: 5px;
+
+            }
         }
 
         &-text {
@@ -251,6 +259,50 @@ body {
     }
 }
 
+
+// Для задания №5 "Шахматная доска"
+.chess {
+    &__box {
+        display: grid;
+        grid-template-columns: 2rem repeat(8, 6rem) 2rem;
+        grid-template-rows: 2rem repeat(8, 6rem) 2rem;
+        grid-gap: 1px;
+        margin: 30px 0;
+    }
+
+    &__cell {
+        border: 1px solid #575757;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #494949;
+        font-size: 1rem;
+        line-height: 1.3rem;
+        text-align: center;
+
+        &_figure-font {
+            font-size: 5rem;
+        }
+
+        &_black {
+            background: #b9b9b9;
+            // color: #ffffff;
+        }
+
+        &_rotated {
+            transform: rotate(180deg);
+        }
+
+        &_caption {
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+    }
+}
+
+
+
 @media screen and (max-width:900px) {
     html {
         font-size: 14px;
@@ -269,13 +321,31 @@ body {
             flex: 1 0 48%;
         }
     }
+
+    .chess {
+        &__box {
+            grid-template-columns: 1.2rem repeat(8, 4rem) 1.2rem;
+            grid-template-rows: 1.2rem repeat(8, 4rem) 1.2rem;
+        }
+
+        &__cell {
+            // font-size: 0.8rem;
+            // line-height: 1rem;
+
+            &_figure-font {
+                font-size: 4rem;
+            }
+
+        }
+    }
 }
 
 @media screen and (max-width:540px) {
 
-    // html{
+    // html {
     //     font-size: 12px;
     // }
+
     .header {
         &__top {
             justify-content: space-between;
@@ -348,15 +418,35 @@ body {
 
     }
 
-    // .mainMenuOpen{
-    //     display: block;
-    // }
-
     .homework {
         &__sub {
             flex: 1 0 90%;
+
+            &-button {
+                &-5 {
+                    font-size: 0.8rem;
+                }
+            }
+
         }
     }
 
+    .chess {
+
+        &__box {
+            grid-template-columns: 1.2rem repeat(8, 3rem) 1.2rem;
+            grid-template-rows: 1.2rem repeat(8, 3rem) 1.2rem;
+        }
+
+        &__cell {
+            font-size: 0.8rem;
+            line-height: 1rem;
+
+            &_figure-font {
+                font-size: 3rem;
+            }
+
+        }
+    }
 
 }

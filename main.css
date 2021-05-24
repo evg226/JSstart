@@ -77,7 +77,7 @@ h6 {
 }
 
 .container {
-  min-width: 320px;
+  min-width: 380px;
   max-width: 1040px;
   margin: 0 auto;
   padding: 0 10px;
@@ -168,6 +168,7 @@ body {
 .homework__box {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 .homework__heading {
   text-transform: uppercase;
@@ -246,6 +247,11 @@ body {
   color: #ffffff;
   background: #494949;
 }
+.homework__sub-button-5 {
+  min-width: 25%;
+  max-width: 30%;
+  margin: 5px;
+}
 .homework__sub-text {
   font-size: 1rem;
   color: #494949;
@@ -286,6 +292,37 @@ body {
   line-height: 1.5rem;
 }
 
+.chess__box {
+  display: grid;
+  grid-template-columns: 2rem repeat(8, 6rem) 2rem;
+  grid-template-rows: 2rem repeat(8, 6rem) 2rem;
+  grid-gap: 1px;
+  margin: 30px 0;
+}
+.chess__cell {
+  border: 1px solid #575757;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #494949;
+  font-size: 1rem;
+  line-height: 1.3rem;
+  text-align: center;
+}
+.chess__cell_figure-font {
+  font-size: 5rem;
+}
+.chess__cell_black {
+  background: #b9b9b9;
+}
+.chess__cell_rotated {
+  transform: rotate(180deg);
+}
+.chess__cell_caption {
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
 @media screen and (max-width: 900px) {
   html {
     font-size: 14px;
@@ -298,6 +335,14 @@ body {
 
   .homework__sub {
     flex: 1 0 48%;
+  }
+
+  .chess__box {
+    grid-template-columns: 1.2rem repeat(8, 4rem) 1.2rem;
+    grid-template-rows: 1.2rem repeat(8, 4rem) 1.2rem;
+  }
+  .chess__cell_figure-font {
+    font-size: 4rem;
   }
 }
 @media screen and (max-width: 540px) {
@@ -349,5 +394,20 @@ body {
 
   .homework__sub {
     flex: 1 0 90%;
+  }
+  .homework__sub-button-5 {
+    font-size: 0.8rem;
+  }
+
+  .chess__box {
+    grid-template-columns: 1.2rem repeat(8, 3rem) 1.2rem;
+    grid-template-rows: 1.2rem repeat(8, 3rem) 1.2rem;
+  }
+  .chess__cell {
+    font-size: 0.8rem;
+    line-height: 1rem;
+  }
+  .chess__cell_figure-font {
+    font-size: 3rem;
   }
 }/*# sourceMappingURL=main.css.map */
