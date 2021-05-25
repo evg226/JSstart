@@ -393,6 +393,8 @@ body {
   background-color: #ffffff;
   padding: 20px;
   box-shadow: 0 0 20px #b9b9b9;
+  color: #575757;
+  line-height: 1.2rem;
 }
 .gallery__top_cart-form-caption {
   text-align: center;
