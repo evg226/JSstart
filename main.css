@@ -449,6 +449,29 @@ body {
   font-size: 1.5rem;
   font-weight: 700;
 }
+.gallery__top_img-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.gallery__top_img-arrow {
+  padding: 1%;
+  margin: 2%;
+  color: #ffffff;
+  background: #cfcccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: 900;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease;
+}
+.gallery__top_img-arrow:hover {
+  box-shadow: 0 0 5px #575757;
+}
 .gallery__top img {
   width: 75%;
 }

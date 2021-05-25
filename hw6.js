@@ -2,9 +2,9 @@
 // п.1.2.3 галлерея товаров
 function makeGallery() {
     var goods = [ //пусть нам дана база товаров 
-        { name: "lexus Bike", price: 300 },
-        { name: "Mountin Trike", price: 200 },
-        { name: "Stels", price: 150 },
+        { name: "lexus Bike", price: 300, big_pictures:["big00","big10","big20","big30"] },
+        { name: "Mountin Trike", price: 200, big_pictures: [] },
+        { name: "Stels", price: 150, big_pictures: ["big02", "big12", "big22"] }
     ];
     var currentGood = 0; //Товар по умолчанию для отображения
     var cart = []; //- корзина, изначально пустая
@@ -31,7 +31,7 @@ function makeGallery() {
     gallery.append(galleryBottom);
     for (var i = 0; i < goods.length; i++){ //добавляем маленькие карточки товра
         goods[i].imageIconSrc = `img/small${i}.jpg`;// добавим информацию о местонахождении картинок товара - маленьких
-        goods[i].imageSrc = `img/big${i}.jpg`; // и больших
+        // goods[i].imageSrc = `img/big0${i}.jpg`; // и больших
         var currentIcon = createIcon(goods[i]); // создаем интерфейсные элементы карточен товара (маленьких)
         currentIcon.id = "icon" + i;
         galleryBottom.append(currentIcon); //помещаем карточку в контейнер для карточек
@@ -52,17 +52,33 @@ function makeGallery() {
     cartButton.innerHTML = "&#129530; Добавить в корзину";
     cartButton.addEventListener("click", addToCart); // обработчик кнопки добавления в корзину
     galleryTop.append(cartButton);
+    var imgBox = document.createElement("div");
+    imgBox.classList.add("gallery__top_img-box");
+    galleryTop.append(imgBox);
+    var buttonImgLeft = document.createElement("div");
+    buttonImgLeft.classList.add("gallery__top_img-arrow");
+    buttonImgLeft.innerHTML = "<";
+    buttonImgLeft.id = "arrowLeft";
+    buttonImgLeft.addEventListener("click",browsePic);
+    imgBox.append(buttonImgLeft);
     var galleryTopImage = document.createElement("img"); //большой рисунок
     // *************************************
     //к п.1 Проверка наличия большого рисунка
     // **************************************
-    galleryTopImage.onerror = function () { //если возникает ошибка при загрузке большого рисурка (н-р его нету),
-        galleryTopImage.src = goods[currentGood].imageIconSrc; // то вставляется маленький рисунок (возможно загрузка какого-нибудь дефолтного рисунка)
+    galleryTopImage.onerror =  function showDefaultPic(event) { //если возникает ошибка при загрузке большого рисурка (н-р его нету),
+        galleryTopImage.src = "img/default.jpg"; // то вставляется маленький рисунок (возможно загрузка какого-нибудь дефолтного рисунка)
     };  
-    galleryTopImage.src = goods[currentGood].imageSrc;
-    galleryTop.append(galleryTopImage);
 
-    var cartForm= document.createElement("div");; // контейнер для вывода содержимого корзины
+    galleryTopImage.src = `img/${goods[currentGood].big_pictures[0]}.jpg`;
+    imgBox.append(galleryTopImage);
+    var buttonImgRight = document.createElement("div");
+    buttonImgRight.classList.add("gallery__top_img-arrow");
+    buttonImgRight.innerHTML = ">";
+    buttonImgRight.id="arrowRight"
+    imgBox.append(buttonImgRight);
+    buttonImgRight.addEventListener("click",browsePic);
+
+    var cartForm= document.createElement("div"); // контейнер для вывода содержимого корзины
     cartForm.classList.add("gallery__top_cart-form");
     cartForm.setAttribute("cart", "1");
     // gallery.append(cartForm);        //вначале контейнер не добавлен на страницу (не виден)
@@ -107,7 +123,7 @@ function makeGallery() {
 
     function iconClick() { // обработчик выбора текущего товара
         currentGood = this.id.slice(-1); 
-        galleryTopImage.src = goods[currentGood].imageSrc;
+        galleryTopImage.src = `img/${goods[currentGood].big_pictures[0]}.jpg`;
         galleryTopCaption.innerText = goods[currentGood].name;
         galleryTopPrice.innerText = goods[currentGood].price + "$";
     }
@@ -177,4 +193,26 @@ function makeGallery() {
             }
         }
     }
+
+    // *************************************
+    //к п.3 Листаем гарелею картинок выбранного товара
+    // **************************************
+    function browsePic(e) { 
+        var pictures = goods[currentGood].big_pictures; //Массив картинок текущего товара
+        if (pictures.length < 1) { //если он пустой, то выход
+            return;
+        }
+        var currentPic = galleryTopImage.src; //путь к текущей картинке текущего товара
+        currentPic = currentPic.slice(currentPic.indexOf("/img/") + 5, currentPic.indexOf(".jpg")); //имя файла текущей картинки текущего товара
+        var picturesCurrent = pictures.indexOf(currentPic); //находим индекс этой картинки в массиве картинок текущего товара
+        // если была нажата кнопка влево, то след.картиной будет картинка на единицу меньше, иначе - на единицу больше
+        var nextPic = (e.target.id == "arrowLeft") ? --picturesCurrent : ++picturesCurrent; 
+        if (nextPic >= pictures.length) { // если достигнут конец массива картинок
+            nextPic = 0;                  //  , то переходим к первой
+        } else if (nextPic < 0) {           // // если достигнуто начало массива картинок
+            nextPic = pictures.length-1;    //  , то переходим к последней
+        }
+        galleryTopImage.src = `img/${goods[currentGood].big_pictures[nextPic]}.jpg`; //загружаем картинку
+    }
+
 }
