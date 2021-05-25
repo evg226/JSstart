@@ -2,13 +2,13 @@
 // п.1.2.3 галлерея товаров
 function makeGallery() {
     var goods = [ //пусть нам дана база товаров 
-        { name: "lexus Bike", price: 300, big_pictures:["big00","big10","big20","big30"] },
+        { name: "lexus Bike", price: 300, big_pictures: ["big00", "big10", "big20", "big30"] },
         { name: "Mountin Trike", price: 200, big_pictures: [] },
         { name: "Stels", price: 150, big_pictures: ["big02", "big12", "big22"] }
     ];
     var currentGood = 0; //Товар по умолчанию для отображения
     var cart = []; //- корзина, изначально пустая
-   
+
     //Создаем верстку
     var gallery = document.createElement("div"); //элемент для галереи товаров
     gallery.classList.add("gallery");
@@ -29,13 +29,13 @@ function makeGallery() {
     var galleryBottom = document.createElement("div"); // Контейнер для маленьких карточек товара
     galleryBottom.classList.add("gallery__bottom");
     gallery.append(galleryBottom);
-    for (var i = 0; i < goods.length; i++){ //добавляем маленькие карточки товра
+    for (var i = 0; i < goods.length; i++) { //добавляем маленькие карточки товра
         goods[i].imageIconSrc = `img/small${i}.jpg`;// добавим информацию о местонахождении картинок товара - маленьких
         // goods[i].imageSrc = `img/big0${i}.jpg`; // и больших
         var currentIcon = createIcon(goods[i]); // создаем интерфейсные элементы карточен товара (маленьких)
         currentIcon.id = "icon" + i;
         galleryBottom.append(currentIcon); //помещаем карточку в контейнер для карточек
-    } 
+    }
     var galleryTop = document.createElement("div"); //создаем элемент для размещения выбранного товара (с большим рисунком)
     galleryTop.classList.add("gallery__top");
     gallery.append(galleryTop);
@@ -44,7 +44,7 @@ function makeGallery() {
     galleryTopCaption.classList.add("gallery__top_caption");
     galleryTop.append(galleryTopCaption);
     var galleryTopPrice = document.createElement("div"); //цена товара
-    galleryTopPrice.innerText = goods[currentGood].price+"$";
+    galleryTopPrice.innerText = goods[currentGood].price + "$";
     galleryTopPrice.classList.add("gallery__top_price");
     galleryTop.append(galleryTopPrice);
     var cartButton = document.createElement("div"); //кнопка добавления в корзину
@@ -59,26 +59,26 @@ function makeGallery() {
     buttonImgLeft.classList.add("gallery__top_img-arrow");
     buttonImgLeft.innerHTML = "<";
     buttonImgLeft.id = "arrowLeft";
-    buttonImgLeft.addEventListener("click",browsePic);
+    buttonImgLeft.addEventListener("click", browsePic);
     imgBox.append(buttonImgLeft);
     var galleryTopImage = document.createElement("img"); //большой рисунок
     // *************************************
     //к п.1 Проверка наличия большого рисунка
     // **************************************
-    galleryTopImage.onerror =  function showDefaultPic(event) { //если возникает ошибка при загрузке большого рисурка (н-р его нету),
+    galleryTopImage.onerror = function showDefaultPic(event) { //если возникает ошибка при загрузке большого рисурка (н-р его нету),
         galleryTopImage.src = "img/default.jpg"; // то вставляется маленький рисунок (возможно загрузка какого-нибудь дефолтного рисунка)
-    };  
+    };
 
     galleryTopImage.src = `img/${goods[currentGood].big_pictures[0]}.jpg`;
     imgBox.append(galleryTopImage);
     var buttonImgRight = document.createElement("div");
     buttonImgRight.classList.add("gallery__top_img-arrow");
     buttonImgRight.innerHTML = ">";
-    buttonImgRight.id="arrowRight"
+    buttonImgRight.id = "arrowRight"
     imgBox.append(buttonImgRight);
-    buttonImgRight.addEventListener("click",browsePic);
+    buttonImgRight.addEventListener("click", browsePic);
 
-    var cartForm= document.createElement("div"); // контейнер для вывода содержимого корзины
+    var cartForm = document.createElement("div"); // контейнер для вывода содержимого корзины
     cartForm.classList.add("gallery__top_cart-form");
     cartForm.setAttribute("cart", "1");
     // gallery.append(cartForm);        //вначале контейнер не добавлен на страницу (не виден)
@@ -86,7 +86,7 @@ function makeGallery() {
     cartItemCaption.classList.add("gallery__top_cart-form-caption");
     cartItemCaption.innerText = "Корзина";
     cartItemCaption.setAttribute("cart", "1");
-    cartForm.append(cartItemCaption); 
+    cartForm.append(cartItemCaption);
     var cartBox = document.createElement("div"); //Контейнер для элементов товара
     cartBox.classList.add("gallery__top_cart-form-item");
     cartBox.setAttribute("cart", "1");
@@ -94,7 +94,7 @@ function makeGallery() {
     var cartTotal = document.createElement("div");//итого корзины
     cartTotal.classList.add("gallery__top_cart-form-total");
     cartTotal.setAttribute("cart", "1");
-    cartTotal.innerText = "ИТОГО: "+"$";
+    cartTotal.innerText = "ИТОГО: " + "$";
     cartForm.append(cartTotal);
     var cartButtonBuy = document.createElement("div"); //Кнопка совершения покупки
     cartButtonBuy.classList.add("gallery__top_cart-form-buy");
@@ -116,13 +116,13 @@ function makeGallery() {
         icon.append(img);
         var price = document.createElement("div");
         price.classList.add("gallery__bottom_price");
-        price.innerText = good.price+"$";
+        price.innerText = good.price + "$";
         icon.append(price);
         return icon;
     }
 
     function iconClick() { // обработчик выбора текущего товара
-        currentGood = this.id.slice(-1); 
+        currentGood = this.id.slice(-1);
         galleryTopImage.src = `img/${goods[currentGood].big_pictures[0]}.jpg`;
         galleryTopCaption.innerText = goods[currentGood].name;
         galleryTopPrice.innerText = goods[currentGood].price + "$";
@@ -132,9 +132,13 @@ function makeGallery() {
     //к п.2 Добавление товара в корзину
     // **************************************
     function addToCart() { //обработчик кнопки добавления в корзину
-        for(var item of cart){
-            if (item.id == parseInt(currentGood)){ // если товар найден в корзине, то
-                cart[parseInt(currentGood)].count++; //1.его количество в корзине прибавится
+        for (var index in cart) {
+            // console.log(item.id);
+            // console.log(currentGood);
+            // console.log(cart);
+            // console.log(cart[index]);
+            if (cart[index].id === parseInt(currentGood)) { // если товар найден в корзине, то
+                cart[index].count++; //1.его количество в корзине прибавится
                 return;                                //2. и добавления товара  не происходит
             }
         }
@@ -142,16 +146,16 @@ function makeGallery() {
             id: parseInt(currentGood),
             count: 1
         });
-        cartOpenFormAfter.innerHTML =cart.length;//количество товаров в корзине (над кнопкой корзина) отображается
+        cartOpenFormAfter.innerHTML = cart.length;//количество товаров в корзине (над кнопкой корзина) отображается
     }
 
-     // *************************************
+    // *************************************
     //к п.2 Просмотр корзины, суммы покупки и покупка
     // **************************************
     function openCart() {
         var total = 0;//сумма корзины
         cartBox.innerHTML = "";
-        for (index = 0; index < cart.length; index++){ //создаем елементы для размещения коризны в контенере корзины
+        for (index = 0; index < cart.length; index++) { //создаем елементы для размещения коризны в контенере корзины
             var goodIndex = cart[index].id;
             var itemCost = goods[goodIndex].price * cart[index].count;
             total += itemCost;
@@ -171,8 +175,8 @@ function makeGallery() {
             cartItemCost.setAttribute("cart", "1");
             cartItemCost.innerText = itemCost + "$";
             cartBox.append(cartItemCost);
-            };
-            cartTotal.innerText = "ИТОГО: " + total + "$";
+        };
+        cartTotal.innerText = "ИТОГО: " + total + "$";
         gallery.append(cartForm); //добавлем контейнер корзины в верстку (отображем)
         cartButtonBuy.onclick = function () {
             if (total > 0) {
@@ -189,7 +193,7 @@ function makeGallery() {
             if (!(e.target.getAttribute("cart") == 1)) { // при клике в любом месте, кроме контейнера корзины
                 cartForm.remove();
                 doc.onclick = null;
-                
+
             }
         }
     }
@@ -197,7 +201,7 @@ function makeGallery() {
     // *************************************
     //к п.3 Листаем гарелею картинок выбранного товара
     // **************************************
-    function browsePic(e) { 
+    function browsePic(e) {
         var pictures = goods[currentGood].big_pictures; //Массив картинок текущего товара
         if (pictures.length < 1) { //если он пустой, то выход
             return;
@@ -206,11 +210,11 @@ function makeGallery() {
         currentPic = currentPic.slice(currentPic.indexOf("/img/") + 5, currentPic.indexOf(".jpg")); //имя файла текущей картинки текущего товара
         var picturesCurrent = pictures.indexOf(currentPic); //находим индекс этой картинки в массиве картинок текущего товара
         // если была нажата кнопка влево, то след.картиной будет картинка на единицу меньше, иначе - на единицу больше
-        var nextPic = (e.target.id == "arrowLeft") ? --picturesCurrent : ++picturesCurrent; 
+        var nextPic = (e.target.id == "arrowLeft") ? --picturesCurrent : ++picturesCurrent;
         if (nextPic >= pictures.length) { // если достигнут конец массива картинок
             nextPic = 0;                  //  , то переходим к первой
         } else if (nextPic < 0) {           // // если достигнуто начало массива картинок
-            nextPic = pictures.length-1;    //  , то переходим к последней
+            nextPic = pictures.length - 1;    //  , то переходим к последней
         }
         galleryTopImage.src = `img/${goods[currentGood].big_pictures[nextPic]}.jpg`; //загружаем картинку
     }
