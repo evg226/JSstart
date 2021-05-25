@@ -165,6 +165,7 @@ function makeGallery() {
                 cartOpenFormAfter.innerHTML = "0";
                 cartBox.innerHTML = "";
                 cartTotal.innerText = "ИТОГО: 0" + "$";
+                total = 0;
             }
         }
         var doc = document.querySelector("body");
