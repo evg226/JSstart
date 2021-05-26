@@ -68,7 +68,7 @@ function makeGallery() {
     galleryTopImage.onerror = function showDefaultPic(event) { //если возникает ошибка при загрузке большого рисурка (н-р его нету),
         galleryTopImage.src = "img/default.jpg"; // то вставляется маленький рисунок (возможно загрузка какого-нибудь дефолтного рисунка)
     };
-
+    galleryTopImage.setAttribute("picId", "0"); //текущая большая картинка - с 0-номером из массива картинок текущего товара
     galleryTopImage.src = `img/${goods[currentGood].big_pictures[0]}.jpg`;
     imgBox.append(galleryTopImage);
     var buttonImgRight = document.createElement("div");
@@ -206,17 +206,19 @@ function makeGallery() {
         if (pictures.length < 1) { //если он пустой, то выход
             return;
         }
-        var currentPic = galleryTopImage.src; //путь к текущей картинке текущего товара
-        currentPic = currentPic.slice(currentPic.indexOf("/img/") + 5, currentPic.indexOf(".jpg")); //имя файла текущей картинки текущего товара
-        var picturesCurrent = pictures.indexOf(currentPic); //находим индекс этой картинки в массиве картинок текущего товара
-        // если была нажата кнопка влево, то след.картиной будет картинка на единицу меньше, иначе - на единицу больше
-        var nextPic = (e.target.id == "arrowLeft") ? --picturesCurrent : ++picturesCurrent;
+        // var currentPic = galleryTopImage.src; //путь к текущей картинке текущего товара
+        // currentPic = currentPic.slice(currentPic.indexOf("/img/") + 5, currentPic.indexOf(".jpg")); //имя файла текущей картинки текущего товара
+        // var picturesCurrent = pictures.indexOf(currentPic); //находим индекс этой картинки в массиве картинок текущего товара
+        // // если была нажата кнопка влево, то след.картиной будет картинка на единицу меньше, иначе - на единицу больше
+        var picturesCurrent = parseInt(galleryTopImage.getAttribute("picId")); // считываем код текущей картинки у большого рисунка
+        var nextPic = (e.target.id == "arrowLeft") ? --picturesCurrent : ++picturesCurrent; // новый номер картинки текущего товара
         if (nextPic >= pictures.length) { // если достигнут конец массива картинок
             nextPic = 0;                  //  , то переходим к первой
         } else if (nextPic < 0) {           // // если достигнуто начало массива картинок
             nextPic = pictures.length - 1;    //  , то переходим к последней
         }
-        galleryTopImage.src = `img/${goods[currentGood].big_pictures[nextPic]}.jpg`; //загружаем картинку
+        galleryTopImage.setAttribute("picId", nextPic); // записываем новый номер картинки 
+        galleryTopImage.src = `img/${goods[currentGood].big_pictures[nextPic]}.jpg`; //загружаем картинку по номеру из массива картинок текущего товара
     }
 
 }
