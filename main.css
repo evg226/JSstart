@@ -386,12 +386,12 @@ body {
   position: absolute;
   right: 0;
   top: 50px;
-  width: 300px;
+  max-width: 360px;
   border: 1px solid #cfcccc;
   border-radius: 5px;
   z-index: 10;
   background-color: #ffffff;
-  padding: 20px;
+  padding: 15px;
   box-shadow: 0 0 20px #b9b9b9;
   color: #575757;
   line-height: 1.2rem;
@@ -402,6 +402,18 @@ body {
   color: #494949;
   font-size: 1.1rem;
   font-weight: 600;
+}
+.gallery__top_cart-form-item-del {
+  text-align: center;
+  color: #494949;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.gallery__top_cart-form-item-del:hover {
+  border-radius: 5px;
+  box-shadow: 0 0 20px #494949;
+  transform: scale(1.5);
 }
 .gallery__top_cart-form-total {
   text-transform: uppercase;
@@ -425,14 +437,22 @@ body {
   transform: scale(1.05);
 }
 .gallery__top_cart-form-item {
-  padding: 20px 0;
+  padding: 15px 0;
   display: grid;
-  grid-template-columns: 1fr 20% 10% 20%;
+  grid-template-columns: 10px 1fr minmax(30px, 40px) 45px minmax(30px, 40px);
   grid-template-rows: 25px;
   grid-auto-rows: 25px;
   align-items: center;
   color: #494949;
   text-transform: uppercase;
+  grid-gap: 10px;
+}
+.gallery__top_cart-form-item input {
+  border: 1px solid #b9b9b9;
+  padding: 5px 0 5px 5px;
+  text-align: center;
+  margin-right: 5px;
+  cursor: pointer;
 }
 .gallery__top_caption {
   text-transform: uppercase;

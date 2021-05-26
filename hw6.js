@@ -17,7 +17,7 @@ function makeGallery() {
     var cartOpenForm = document.createElement("div");//кнопка открытия корзины
     cartOpenForm.classList.add("gallery__top_cart");
     cartOpenForm.classList.add("gallery__top_cart-goto");
-    cartOpenForm.setAttribute("cart", "1"); //принадлежность в форме корзины
+    cartOpenForm.setAttribute("cart", "true"); //принадлежность в форме корзины
     cartOpenForm.innerHTML = `Перейти в корзину`;
     cartOpenForm.addEventListener('click', openCart);//создаем обработчик для открытия формы корзины
     gallery.append(cartOpenForm);
@@ -80,25 +80,25 @@ function makeGallery() {
 
     var cartForm = document.createElement("div"); // контейнер для вывода содержимого корзины
     cartForm.classList.add("gallery__top_cart-form");
-    cartForm.setAttribute("cart", "1");
+    cartForm.setAttribute("cart", "true");
     // gallery.append(cartForm);        //вначале контейнер не добавлен на страницу (не виден)
     var cartItemCaption = document.createElement("div");//заглавие корзины
     cartItemCaption.classList.add("gallery__top_cart-form-caption");
     cartItemCaption.innerText = "Корзина";
-    cartItemCaption.setAttribute("cart", "1");
+    cartItemCaption.setAttribute("cart", "true");
     cartForm.append(cartItemCaption);
     var cartBox = document.createElement("div"); //Контейнер для элементов товара
     cartBox.classList.add("gallery__top_cart-form-item");
-    cartBox.setAttribute("cart", "1");
+    cartBox.setAttribute("cart", "true");
     cartForm.append(cartBox);
     var cartTotal = document.createElement("div");//итого корзины
     cartTotal.classList.add("gallery__top_cart-form-total");
-    cartTotal.setAttribute("cart", "1");
+    cartTotal.setAttribute("cart", "total");
     cartTotal.innerText = "ИТОГО: " + "$";
     cartForm.append(cartTotal);
     var cartButtonBuy = document.createElement("div"); //Кнопка совершения покупки
     cartButtonBuy.classList.add("gallery__top_cart-form-buy");
-    cartButtonBuy.setAttribute("cart", "1");
+    cartButtonBuy.setAttribute("cart", "true");
     cartButtonBuy.innerText = "Купить";
     cartForm.append(cartButtonBuy);
 
@@ -133,10 +133,6 @@ function makeGallery() {
     // **************************************
     function addToCart() { //обработчик кнопки добавления в корзину
         for (var index in cart) {
-            // console.log(item.id);
-            // console.log(currentGood);
-            // console.log(cart);
-            // console.log(cart[index]);
             if (cart[index].id === parseInt(currentGood)) { // если товар найден в корзине, то
                 cart[index].count++; //1.его количество в корзине прибавится
                 return;                                //2. и добавления товара  не происходит
@@ -159,28 +155,64 @@ function makeGallery() {
             var goodIndex = cart[index].id;
             var itemCost = goods[goodIndex].price * cart[index].count;
             total += itemCost;
+            var cartItemDel = document.createElement("div"); //Кнопка удаления
+            cartItemDel.classList.add("gallery__top_cart-form-item-del");
+            cartItemDel.innerText = "-";
+            cartItemDel.setAttribute("cart", goodIndex);
+            cartItemDel.onclick = function (e) {
+                var cartId = e.target.getAttribute("cart");
+                var elementsToDel = document.querySelectorAll(`[cart='${cartId}']`);
+                for (var item of elementsToDel) {
+                    item.remove();
+                }
+                document.querySelector(`div[cart='${e.target.getAttribute("cart")}cost']`).remove();
+                for (var i in cart) {
+                    if (cart[i].id === parseInt(cartId)) {
+                        cart.splice(i,1);
+                    }    
+                }
+                console.log(cart);
+                cartSum();
+            }
+            cartBox.append(cartItemDel);
             var cartItemName = document.createElement("div");
             cartItemName.innerText = goods[goodIndex].name;
-            cartItemName.setAttribute("cart", "1");
+            cartItemName.setAttribute("cart", goodIndex);
             cartBox.append(cartItemName);
             var cartItemPrice = document.createElement("div");
             cartItemPrice.innerText = goods[goodIndex].price + "$ ";
-            cartItemPrice.setAttribute("cart", "1");
+            cartItemPrice.setAttribute("cart", goodIndex);
             cartBox.append(cartItemPrice);
-            var cartItemCount = document.createElement("div");
-            cartItemCount.innerText = cart[index].count;
-            cartItemCount.setAttribute("cart", "1");
+            var cartItemCount = document.createElement("input");
+            cartItemCount.type = "number";
+            cartItemCount.value = cart[index].count;
+            cartItemCount.setAttribute("cart", goodIndex);
+            cartItemCount.onchange = function (e) {
+                if (e.target.value < 1) {
+                    e.target.value = 1;
+                }
+                var idThis=e.target.getAttribute("cart");
+                for (var index in cart) {
+                    if (cart[index].id ==idThis) { 
+                        cart[index].count = parseInt(e.target.value);
+                        break;
+                    }
+                }
+                document.querySelector(`div[cart='${e.target.getAttribute("cart")}cost']`).innerHTML = (goods[idThis].price * e.target.value) + "$";
+                cartSum();
+            }
             cartBox.append(cartItemCount);
             var cartItemCost = document.createElement("div");
-            cartItemCost.setAttribute("cart", "1");
+            cartItemCost.setAttribute("cart", goodIndex+"cost");
             cartItemCost.innerText = itemCost + "$";
             cartBox.append(cartItemCost);
+           
         };
         cartTotal.innerText = "ИТОГО: " + total + "$";
         gallery.append(cartForm); //добавлем контейнер корзины в верстку (отображем)
         cartButtonBuy.onclick = function () {
             if (total > 0) {
-                alert("Покупка будет выслана в ближайшее время!");
+                if (cartSum()>0) alert("Покупка будет выслана в ближайшее время!");
                 cart = [];
                 cartOpenFormAfter.innerHTML = "0";
                 cartBox.innerHTML = "";
@@ -190,12 +222,21 @@ function makeGallery() {
         }
         var doc = document.querySelector("body");
         doc.onclick = function (e) {//и добавляем обработчик для закрытия (удаления из верстки) контейнера корзины
-            if (!(e.target.getAttribute("cart") == 1)) { // при клике в любом месте, кроме контейнера корзины
+            if (!(e.target.getAttribute("cart") != null)) { // при клике в любом месте, кроме контейнера корзины
                 cartForm.remove();
                 doc.onclick = null;
 
             }
         }
+    }
+
+    function cartSum() {
+        var result = 0;
+        for (var index = 0; index < cart.length; index++){
+            result += cart[index].count * goods[cart[index].id].price;
+        }
+        document.querySelector(`div[cart='total']`).innerHTML = `ИТОГО: ${result}$`;
+        return result;
     }
 
     // *************************************
