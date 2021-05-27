@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>Java script : Базовый курс</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header__container container">
+            <div class="header__top">
+                <a href="index.html" class="header__logo">Java&nbsp;script. Базовый&nbsp;курс</a>
+                <div class="header__hamburger" id="hamburger">
+                    <div class="header__hamburger-line header__hamburger-line-1"></div>
+                    <div class="header__hamburger-line header__hamburger-line-2"></div>
+                    <div class="header__hamburger-line header__hamburger-line-3"></div>
+                </div>
+            </div>
+            <nav class="header__menu" id="mainMenu">
+                <ul>
+                    <li><a href="hw1.html" class="header__menu-link">hw1</a></li>
+                    <li><a href="hw2.html" class="header__menu-link">hw2</a></li>
+                    <li><a href="hw3.html" class="header__menu-link">hw3</a></li>
+                    <li><a class="header__menu-link" id="menu__hw4-item">hw4</a></li>
+                    <li><a class="header__menu-link" id="menu__hw5-item">hw5</a></li>
+                    <li><a class="header__menu-link" id="menu__hw6-item">hw6</a></li>
+                    <li><a class="header__menu-link" id="menu__hw7-item">hw7</a></li>
+                    <li><a class="header__menu-link" id="menu__hw8-item">hw8</a></li>
+                </ul>
+            </nav>
+        </div>
+
+    </header>
+
+    <main>
+        <nav class="breadcrumb">
+            <div class="breadcrumb__container container">
+                <span class="breadcrumb__left">JS-код находится в файле <b>main.js</b></span>
+                <span class="breadcrumb__right"><a href="index.html"
+                        class="breadcrumb__link">Главная</a>&nbsp;/&nbsp;<span id="breadcrumbActiveHW">HW4</span></span>
+            </div>
+        </nav>
+
+
+        <section class="homework">
+            
+                
+
+            <div class="homework__container container">
+                <h1 class="homework__heading" id="pageHeader">
+                    Домашняя работа №3
+                </h1>
+
+                <div class="homework__box" id="activeBox">
+                    <div class="homework__sub">
+                        <h2 class="homework__sub-heading">
+                            3.Кто хочет
+                        </h2>
+                        <label class="homework__sub-label">Введите число от 1 до 999
+                            <input class="homework__sub-inout" type="number" id="input_hw4_1"></label>
+                        <a class="homework__sub-button" onclick="simpleNumbers();">Найти</a>
+                        <div class="homework__sub-label"> Результат
+                            <div class="homework__sub-inout" id="output_hw4_1"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer__container container">
+            &copy; Evgeny Ivanov 2021 Домашние задания Java Script - Базовый курс
+        </div>
+    </footer>
+
+    <script defer src="main.js"></script>
+    <script defer src="menu.js"></script>
+
+</body>
+
+</html>
