@@ -559,6 +559,81 @@ body {
     }
 }
 
+// ************************
+// CSS  уроку 7
+// ************************
+#snake-field {
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+#snake-renew,
+#snake-start {
+    width: 140px;
+    padding: 15px;
+    border: 1px solid #8f8f8f;
+    color: #8f8f8f;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.5s ease;
+
+    &:hover {
+        background-color: #575757;
+        color: white;
+        transform: scale(1.1);
+    }
+}
+
+.snake-score {
+    color: #8f8f8f;
+    margin-bottom: 15px;
+    text-align: right;
+    margin-right: 30px;
+}
+
+#snake-start {
+    margin-right: 20px;
+}
+
+.game-table {
+    border-collapse: collapse;
+    background-color: #3e3e3e;
+}
+
+td.game-table-cell {
+    width: 15px;
+    height: 15px;
+    border: 1px dotted #eee;
+}
+
+.snake-unit {
+    background-color: white;
+}
+
+.food-unit {
+    background-color: red;
+}
+
+.bomb-unit {
+    background-color: green;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.wrap {
+    margin: 30px auto 0;
+    text-align: center;
+    width: 350px;
+}
+
+
+
+
+
+
 @media screen and (max-width:900px) {
     html {
         font-size: 14px;
