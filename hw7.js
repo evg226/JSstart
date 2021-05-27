@@ -4,8 +4,9 @@ function doSnake() {
     // вставляем верстку
     activeHW.innerHTML = `
         <div class="wrap">
-        <div class="snake-score">Счет: <span id="snakeScore">0</span></div>           <!-- РЕШЕНИЕ п.1 Поле для счета --!>
+        <h1 class="snake__heading">Игра "Змейка"</h1>
         <div id="snake-field"></div>
+        <div class="snake-score"><b>Старт</b>, чтобы начать</div>           
         <div class="buttons">
             <div id="snake-start">Старт</div>
             <div id="snake-renew">Новая игра</div>
@@ -26,6 +27,9 @@ function doSnake() {
     var snake_timer; // Таймер змейки
     var food_timer; // Таймер для еды
     var score = 0; // Результат
+    var bomb_timer; //Таймер для препятствий
+    var startButton;    // РЕШЕНИЕ  п.1. Кнопка старт - она же поле для счета
+    var snakeScore // состояние игры 
 
     function init() {
         prepareGameField(); // Генерация поля
@@ -43,7 +47,8 @@ function doSnake() {
         */
         // wrap.style.width = '400px';
         // События кнопок Старт и Новая игра
-        document.getElementById('snake-start').addEventListener('click', startGame);
+        startButton = document.getElementById('snake-start');
+        startButton.addEventListener('click', startGame);
         document.getElementById('snake-renew').addEventListener('click', refreshGame);
 
     // Отслеживание клавиш клавиатуры
@@ -57,8 +62,6 @@ function doSnake() {
         // Создаём таблицу
         var game_table = document.createElement('table');
         game_table.setAttribute('class', 'game-table');
-
-        var snakeScore = document.querySelector("#snakeScore>span");                // РЕШЕНИЕ  п.1. получаем поле для счета
 
         // Генерация ячеек игровой таблицы
         for (var i = 0; i < FIELD_SIZE_X; i++) {
@@ -76,7 +79,9 @@ function doSnake() {
             game_table.appendChild(row); // Добавление строки
         }
 
-        document.getElementById('snake-field').appendChild(game_table); // Добавление таблицы
+        var snakeField = document.getElementById('snake-field');
+        snakeField.innerHTML = "";
+        snakeField.appendChild(game_table); // Добавление таблицы
     }
 
     /**
@@ -87,8 +92,12 @@ function doSnake() {
         respawn();//создали змейку
 
         snake_timer = setInterval(move, SNAKE_SPEED);//каждые 200мс запускаем функцию move
-        setTimeout(createFood, 5000);
-        setTimeout(createBomb, 6000);                       //РЕШЕНИЕ п.2 - создаение препятствий
+        food_timer=setTimeout(createFood, 5000);
+        startButton.removeEventListener('click',startGame);
+        startButton.innerHTML = `Счет: ${score}`;                         //РЕШЕНИЕ п.1 - кнопка рпевращается в поле для счета
+        bomb_timer = setInterval(createBomb, 6000);                       //РЕШЕНИЕ п.2 - создаение препятствий
+        snakeScore = document.querySelector(".snake-score");
+        snakeScore.innerHTML = "Игра начата";
     }
 
     /**
@@ -127,24 +136,47 @@ function doSnake() {
         var coord_y = parseInt(snake_coords[1]);
         var coord_x = parseInt(snake_coords[2]);
         
+        // ********************************************************************************************
+        //Убираем границы                                                РЕШЕНИЕ п.3
+        var nextCoord_x = coord_x;
+        var nextCoord_y = coord_y;
         // Определяем новую точку
-        if (direction == 'x-') {
-            new_unit = document.getElementsByClassName('cell-' + (coord_y) + '-' + (coord_x - 1))[0];
+        switch (direction) {
+            case 'x-': 
+                nextCoord_x = coord_x - 1;
+                break;
+        
+            case 'x+':
+                nextCoord_x = coord_x + 1;
+                break;
+            case 'y+':
+                nextCoord_y = coord_y - 1;
+                break;
+            case 'y-':
+                nextCoord_y = coord_y + 1;
+                break;
         }
-        else if (direction == 'x+') {
-            new_unit = document.getElementsByClassName('cell-' + (coord_y) + '-' + (coord_x + 1))[0];
+        if (nextCoord_x<0) {
+            nextCoord_x = FIELD_SIZE_X - 1;
+        } else if (nextCoord_x >= FIELD_SIZE_X) {
+            nextCoord_x = 0;
         }
-        else if (direction == 'y+') {
-            new_unit = document.getElementsByClassName('cell-' + (coord_y - 1) + '-' + (coord_x))[0];
+        if (nextCoord_y<0) {
+            nextCoord_y = FIELD_SIZE_Y - 1;
+        } else if (nextCoord_y >= FIELD_SIZE_Y) {
+            nextCoord_y = 0;
         }
-        else if (direction == 'y-') {
-            new_unit = document.getElementsByClassName('cell-' + (coord_y + 1) + '-' + (coord_x))[0];
-        }
+        new_unit = document.getElementsByClassName('cell-' + (nextCoord_y) + '-' + (nextCoord_x))[0];
+        // ***********************************************************************************************
+
         // Проверки
         // 1) new_unit не часть змейки
         // 2) Змейка не ушла за границу поля
         //console.log(new_unit);
-        if (!isSnakeUnit(new_unit) && new_unit !== undefined && !isBombUnit(new_unit)) {        //РЕШЕНИЕ п.2 - добавлено в условие
+        if (new_unit !== undefined) {
+            
+        }
+        if (!isSnakeUnit(new_unit) && new_unit !== undefined && !isBombUnit(new_unit)) {        //РЕШЕНИЕ п.2 - добавлено в условие (п.3-проверку на undefined можно убрать)
             // Добавление новой части змейки
             new_unit.setAttribute('class', new_unit.getAttribute('class') + ' snake-unit');
             snake.push(new_unit);
@@ -186,7 +218,9 @@ function doSnake() {
         for (var item of unit.classList){
             if (item == "bomb-unit") {
                 check = true;
-                unit.style.background = "yellow";
+                snake.forEach(function (item) {
+                    item.classList.add("bombed-snake");
+                });
                 break;
             }
         }
@@ -211,7 +245,7 @@ function doSnake() {
             check = true;
             createFood();
             score++;
-            snakeScore.innerText=score;                     // РЕШЕНИЕ п.1 - обновлется счет
+            startButton.innerHTML = `Счет: ${score}`;                     // РЕШЕНИЕ п.1 - обновлется счет
         }
         return check;
     }
@@ -247,16 +281,19 @@ function doSnake() {
      * Создание препятствий                                                     РЕШЕНИЕ п.2 
      */
     function createBomb() {
+        var bombInField = document.querySelector(".bomb-unit"); //Поиск существ. препятствия
+        console.log(bombInField);
+        if (bombInField) {                                      //если препятствие есть, то оно удаляется перед созданием нового
+            bombInField.classList.remove("bomb-unit");
+        } 
         var bombCreated = false;
-
-        while (!bombCreated) { //пока еду не создали
+        while (!bombCreated) { //пока препятствие не создали
             // рандом
             var bomb_x = Math.floor(Math.random() * FIELD_SIZE_X);
             var bomb_y = Math.floor(Math.random() * FIELD_SIZE_Y);
 
             var bomb_cell = document.getElementsByClassName('cell-' + bomb_y + '-' + bomb_x)[0];
             var bomb_cell_classes = bomb_cell.getAttribute('class').split(' ');
-
             // проверка на змейку
             if (!bomb_cell_classes.includes('snake-unit')) {
                 bomb_cell.classList.add("bomb-unit");
@@ -304,8 +341,11 @@ function doSnake() {
     function finishTheGame() {
         gameIsRunning = false;
         clearInterval(snake_timer);
+        clearTimeout(food_timer);
+        clearTimeout(bomb_timer);
         // alert('Вы проиграли! Ваш результат: ' + score.toString());
-        snakeScore.insertAdjacentHTML("beforeend", "&nbsp;&nbsp;Игра окончена!");
+        snakeScore.innerHTML = `Игра окончена!`;
+        startButton.innerHTML=`Счет: ${score}!`
         
     }
 
@@ -313,7 +353,11 @@ function doSnake() {
      * Новая игра
      */
     function refreshGame() {
-        location.reload();
+        // location.reload();
+        if (gameIsRunning) {
+            finishTheGame();
+        }
+        loadHW(currentHW);
     }
 
     // Инициализация
