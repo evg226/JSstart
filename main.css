@@ -252,10 +252,13 @@ body {
   max-width: 30%;
   margin: 5px;
 }
+<<<<<<< HEAD
 .homework__sub-button_group {
   display: flex;
   margin: 20px 0;
 }
+=======
+>>>>>>> HomeWork_5
 .homework__sub-text {
   font-size: 1rem;
   color: #494949;
@@ -327,6 +330,7 @@ body {
   font-weight: 700;
 }
 
+<<<<<<< HEAD
 .gallery {
   width: 100%;
   display: flex;
@@ -531,6 +535,8 @@ body {
   margin-right: 30px;
 }
 
+=======
+>>>>>>> HomeWork_5
 @media screen and (max-width: 900px) {
   html {
     font-size: 14px;
