@@ -42,7 +42,7 @@ doSnake2();
 
 //п.1 игра с урока 7. Вносим исправления в игру с использованием функции с замыканием
 // замыкание используем для функций, которые используют глобальные переменные (для игры Snake - строки 65-69,73,75 )
-// на примере переменной score - пп. 76 - 82
+// на примере переменной score - пп. 76 - 82 и переменной direction - строка 83
 function doSnake2() {  
     // вставляем верстку
     activeHW.innerHTML = `
@@ -63,7 +63,6 @@ function doSnake2() {
     var FIELD_SIZE_Y = 20;//столбцы
     var SNAKE_SPEED = 200; // Интервал между перемещениями змейки
     var snake = []; // Сама змейка
-    var direction = 'y+'; // Направление движения змейки
     var gameIsRunning = false; // Запущена ли игра
     var snake_timer; // Таймер змейки
     var food_timer; // Таймер для еды
@@ -72,7 +71,7 @@ function doSnake2() {
     var startButton;    // РЕШЕНИЕ  п.1. Кнопка старт - она же поле для счета
     var snakeScore // состояние игры 
                                                         // РЕШЕНИЕ п.1
-    // var score = 0;                                 замыкаем глобальную переменную score (используется в функции haveFood() - строка 299
+    // var score = 0;                                 замыкаем глобальную переменную score (используется в функции haveFood() - строка 330
     var scoreIncrement = createScore();         // создаем функцию для замыкания
     function createScore() {
         var score = 0;
@@ -81,6 +80,8 @@ function doSnake2() {
         }
     }
 
+    // var direction = 'y+'; // Направление движения змейки - замыкаем глобальную переменную direction (используется в функцях changeDirection() и move()- строка 178-279
+    var changeDirection = makeDirection();
     
     function init() {
         prepareGameField(); // Генерация поля
@@ -173,10 +174,40 @@ function doSnake2() {
         snake.push(snake_head);
     }
 
-    /**
-     * Движение змейки
-     */
-    function move() {
+
+    function makeDirection(){
+        var direction = "y+";
+        return changeDirectionOld;
+
+        function changeDirectionOld(e) {
+        // console.log(e);
+            if (!e) return direction; //если не нажата никакая кнопка, то возвращаем значение направления - т.е. функция вызывалась из move();
+            switch (e.keyCode) {       //ели кнопка была нажата, (функция вызывалась по события - см строка 107) - изменяем direction
+                case 37: // Клавиша влево
+                    if (direction != 'x+') {
+                        direction = 'x-'
+                    }
+                    break;
+                case 38: // Клавиша вверх
+                    if (direction != 'y-') {
+                        direction = 'y+'
+                    }
+                    break;
+                case 39: // Клавиша вправо
+                    if (direction != 'x-') {
+                        direction = 'x+'
+                    }
+                    break;
+                case 40: // Клавиша вниз
+                    if (direction != 'y+') {
+                        direction = 'y-'
+                    }
+                    break;
+            }
+        }
+    }
+
+      function move() {
         //console.log('move',direction);
         // Сборка классов
         var snake_head_classes = snake[snake.length - 1].getAttribute('class').split(' ');
@@ -192,7 +223,7 @@ function doSnake2() {
         var nextCoord_x = coord_x;
         var nextCoord_y = coord_y;
         // Определяем новую точку
-        switch (direction) {
+        switch (changeDirection()) {
             case 'x-': 
                 nextCoord_x = coord_x - 1;
                 break;
@@ -356,35 +387,6 @@ function doSnake2() {
 
 
 
-    /**
-     * Изменение направления движения змейки
-     * @param e - событие
-     */
-    function changeDirection(e) {
-        // console.log(e);
-        switch (e.keyCode) {
-            case 37: // Клавиша влево
-                if (direction != 'x+') {
-                    direction = 'x-'
-                }
-                break;
-            case 38: // Клавиша вверх
-                if (direction != 'y-') {
-                    direction = 'y+'
-                }
-                break;
-            case 39: // Клавиша вправо
-                if (direction != 'x-') {
-                    direction = 'x+'
-                }
-                break;
-            case 40: // Клавиша вниз
-                if (direction != 'y+') {
-                    direction = 'y-'
-                }
-                break;
-        }
-    }
 
     /**
      * Функция завершения игры
