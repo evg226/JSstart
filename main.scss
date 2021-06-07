@@ -559,6 +559,89 @@ body {
     }
 }
 
+// ************************
+// CSS  уроку 7
+// ************************
+.snake__heading {
+    color: #6b6b6b;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-align: center;
+}
+
+#snake-field {
+    display: inline-block;
+}
+
+#snake-renew,
+#snake-start {
+    width: 48%;
+    padding: 15px;
+    border: 1px solid #8f8f8f;
+    color: #8f8f8f;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 1.1rem;
+
+    &:hover {
+        background-color: #575757;
+        color: white;
+        transform: scale(1.1);
+    }
+}
+
+.snake-score {
+    color: #8f8f8f;
+    text-align: center;
+    margin: 15px 0;
+    font-size: 1.2rem;
+}
+
+.game-table {
+    border-collapse: collapse;
+    background-color: #575757;
+}
+
+td.game-table-cell {
+    width: 20px;
+    height: 20px;
+    border: 1px dotted #eee;
+}
+
+.snake-unit {
+    background-color: white;
+}
+
+.food-unit {
+    background-color: #298023;
+}
+
+.bomb-unit {
+    background-color: #c03b3b;
+}
+
+.bombed-snake {
+    background-color: #e97171;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.wrap {
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+
+
+
+
 @media screen and (max-width:900px) {
     html {
         font-size: 14px;
@@ -703,6 +786,12 @@ body {
             }
 
         }
+    }
+
+    td.game-table-cell {
+        width: 18px;
+        height: 18px;
+
     }
 
 }

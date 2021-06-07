@@ -624,4 +624,9 @@ body {
   .chess__cell_figure-font {
     font-size: 3rem;
   }
+
+  td.game-table-cell {
+    width: 18px;
+    height: 18px;
+  }
 }/*# sourceMappingURL=main.css.map */
