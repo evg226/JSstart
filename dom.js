@@ -1,5 +1,5 @@
 // Загрузка меню
-var currentHW = "7"; //Текущий урок
+var currentHW = "8"; //Текущий урок
 
 var mainMenuItems = document.getElementById("mainMenuItems"); //список меню
 var mainMenuLi = []; // пункты меню
@@ -67,9 +67,18 @@ function loadHW(indexHW) {
             
         }
 
-        //Формируем задания к уроку 6
-        if (indexHW == "6") {
-            makeGallery();
+         //Формируем задания к уроку 6
+         if (indexHW == "6") {
+          
+             makeGallery();
+            
+         }
+        
+           //Формируем задания к уроку 6
+         if (indexHW == "8") {
+          
+             hw8();
+            
         }
         
         //Формируем задания к уроку 7
